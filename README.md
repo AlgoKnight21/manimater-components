@@ -121,5 +121,5 @@ MIT. Each community plugin keeps its own licence: see [docs/THIRD_PARTY.md](docs
 
 <p align="center">
   <a href="https://github.com/bishnt/manimater"><img src="assets/logo.svg" alt="Manimater" width="40"></a><br>
-  <sub>Manimater is built on this open source library. Logo and brand assets in <a href="assets/"><code>assets/</code></a> are the Manimater marks, used here with the project's permission.</sub>
+  <sub>Manimater is built on this open source library. The logo and banner in <a href="assets/"><code>assets/</code></a> are the Manimater marks.</sub>
 </p>
