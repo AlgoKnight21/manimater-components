@@ -7,7 +7,7 @@ import operator as op
 import re
 from typing import Callable
 
-_BIN = {ast.Add: op.add, ast.Sub: op.sub, ast.Mult: op.mul, ast.Div: op.truediv, ast.Pow: op.pow, ast.Mod: op.mod}
+_BIN = {ast.Add: op.add, ast.Sub: op.sub, ast.Mult: op.mul, ast.Div: op.truediv, ast.Pow: math.pow, ast.Mod: op.mod}
 _UN = {ast.UAdd: op.pos, ast.USub: op.neg}
 _FUNCS = {
     "sin": math.sin, "cos": math.cos, "tan": math.tan, "exp": math.exp, "log": math.log,
