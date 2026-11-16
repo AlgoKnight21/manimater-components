@@ -1,0 +1,90 @@
+name: Component from issue
+# Turns a "New component (from an LLM)" issue into a pull request. The submitted code is checked statically and is
+# NEVER executed here: the script only parses it. A maintainer reads it before CI runs (see the PR text).
+on:
+  issues:
+    types: [opened, edited, labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: component-issue-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: contains(github.event.issue.labels.*.name, 'component-submission')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+
+      - name: Check the submission (static only)
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          RESULT_FILE: ${{ runner.temp }}/issue-result.json
+        run: python scripts/component_from_issue.py
+
+      - name: Report problems on the issue
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE: ${{ github.event.issue.number }}
+          RESULT_FILE: ${{ runner.temp }}/issue-result.json
+        run: |
+          python - <<'PY'
+          import json, os, subprocess
+          r = json.load(open(os.environ["RESULT_FILE"]))
+          if r["ok"]:
+              raise SystemExit(0)
+          lines = "\n".join(f"- {e}" for e in r["errors"])
+          body = ("Thanks for the submission. I could not turn it into a pull request yet:\n\n" + lines +
+                  "\n\nFix this in your issue (use **Edit** on the first post, or paste this message back into the LLM and ask for "
+                  "a corrected version). I check again every time you edit.\n\n<sub>This check only reads the code; it never runs it.</sub>")
+          subprocess.run(["gh", "issue", "comment", os.environ["ISSUE"], "--body", body], check=True)
+          PY
+
+      - name: Open or update the pull request
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE: ${{ github.event.issue.number }}
+          AUTHOR: ${{ github.event.issue.user.login }}
+          AUTHOR_ID: ${{ github.event.issue.user.id }}
+          RESULT_FILE: ${{ runner.temp }}/issue-result.json
+        run: |
+          set -euo pipefail
+          ok=$(python -c "import json,os;print(json.load(open(os.environ['RESULT_FILE']))['ok'])")
+          [ "$ok" = "True" ] || exit 0
+          name=$(python -c "import json,os;print(json.load(open(os.environ['RESULT_FILE']))['name'])")
+          teaches=$(python -c "import json,os;print(json.load(open(os.environ['RESULT_FILE']))['teaches'])")
+          branch="component/issue-${ISSUE}-${name}"
+          git config user.name "manimater-bot"; git config user.email "bot@users.noreply.github.com"
+          git checkout -B "$branch"
+          git add manimate/components/community tests/community
+          git commit -q --author="${AUTHOR} <${AUTHOR_ID}+${AUTHOR}@users.noreply.github.com>" \
+            -m "Add ${name} component (from issue #${ISSUE})" -m "Submitted by @${AUTHOR}. Generated from the new-component issue form; not yet run."
+          git push -f origin "$branch"
+          cat > "$RUNNER_TEMP/pr.md" <<EOT
+          Closes #${ISSUE}. Submitted by @${AUTHOR} through the new-component form.
+
+          **Teaches:** ${teaches}
+
+          ### For the maintainer
+          The code passed a **static** check only (allowed imports, no \`eval\`/\`exec\`/files/network). It has **not been run**, and CI does not start
+          automatically on bot pull requests. Do this in order:
+          1. Read \`manimate/components/community/${name}.py\` carefully.
+          2. Run the **Regenerate catalog** workflow on branch \`${branch}\` (Actions tab). It runs the code, regenerates \`catalog.json\` and the docs, pushes the result, and starts CI.
+          3. Preview it: \`python -m manimate.preview ${name}\`, and check the five design questions in CONTRIBUTING.md.
+          EOT
+          if gh pr view "$branch" >/dev/null 2>&1; then
+            gh pr edit "$branch" --body-file "$RUNNER_TEMP/pr.md"
+          else
+            gh pr create --head "$branch" --base main --title "New component: ${name}" --body-file "$RUNNER_TEMP/pr.md" --label "from-issue" || \
+            gh pr create --head "$branch" --base main --title "New component: ${name}" --body-file "$RUNNER_TEMP/pr.md"
+          fi
+          pr=$(gh pr view "$branch" --json url -q .url)
+          gh issue comment "$ISSUE" --body "Thank you! The check passed and I opened ${pr}. A maintainer will read it, run it, and reply there. You do not need to do anything else."

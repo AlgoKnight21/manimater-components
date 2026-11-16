@@ -9,3 +9,4 @@ dist/
 media/
 previews/
 .DS_Store
+*.skill.zip

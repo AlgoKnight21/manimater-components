@@ -9,6 +9,7 @@ from manim import FadeOut, Scene, tempconfig
 
 from manimate import registry
 from manimate.components import community, load_all
+from manimate.components.community._safety import check_source
 from manimate.ctx import Ctx
 
 load_all()
@@ -39,11 +40,10 @@ def test_every_community_component_example_renders(comp):
 @pytest.mark.parametrize("comp", COMMUNITY, ids=lambda c: c.name)
 def test_community_components_keep_to_the_rules(comp):
     assert comp.name == comp.name.lower() and comp.name.replace("_", "").isalnum(), "name must be snake_case"
-    assert 0 < len(comp.params) <= 6, "few params (at most 6)"
+    assert 0 < len(comp.params) <= 5, "few params (at most 5)"
     assert len(comp.description) <= 200
     src = pathlib.Path(importlib.import_module(comp.fn.__module__).__file__).read_text()
-    for banned in ("eval(", "exec(", "subprocess", "os.system", "requests", "urllib", "socket", "__import__"):
-        assert banned not in src, f"{banned!r} is not allowed in a component"
+    assert check_source(src) == []
 
 
 def test_the_template_is_a_working_component():
@@ -60,3 +60,22 @@ def test_the_template_is_a_working_component():
         assert mod._clean_steps(["  one ", "", "two", "x" * 40])[2] == "x" * 24
     finally:
         registry._REGISTRY.pop("step_chain", None)
+
+
+def test_the_template_passes_the_static_check():
+    assert check_source((COMMUNITY_DIR / "_template.py").read_text()) == []
+
+
+@pytest.mark.parametrize("bad", [
+    "import os",
+    "import subprocess",
+    "from urllib import request",
+    "eval('1+1')",
+    "exec('x=1')",
+    "open('/etc/passwd')",
+    "x = ().__class__.__bases__",
+    "import numpy as np\nnp.os.system('ls')",
+    "def f(:\n pass",
+])
+def test_the_static_check_rejects_unsafe_code(bad):
+    assert check_source(bad)

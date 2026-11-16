@@ -1,0 +1,53 @@
+name: New component (from an LLM)
+description: Paste a component you generated with an LLM (or wrote yourself). A bot turns it into a pull request. No coding needed.
+title: "New component: "
+labels: ["component-submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! Before you start, read [Generate with an LLM](../blob/main/docs/GENERATE_WITH_AN_LLM.md).
+        The bot **never runs your code**; it only checks it, then opens a pull request for a maintainer to review.
+  - type: input
+    id: name
+    attributes:
+      label: Component name
+      description: Lowercase letters, digits and underscores, e.g. `binary_addition`. Must match the name in your code.
+    validations: { required: true }
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Subject area
+      options: [general, computer-science, control-systems, electrical, power-systems, microelectronics, machine-learning, finance, physics, chemistry, databases, learn, other]
+    validations: { required: true }
+  - type: textarea
+    id: teaches
+    attributes:
+      label: What does it teach?
+      description: One or two sentences, in plain words. Who is it for?
+    validations: { required: true }
+  - type: textarea
+    id: code
+    attributes:
+      label: Python code
+      description: The whole file the LLM gave you. Paste it as it is.
+      render: python
+    validations: { required: true }
+  - type: textarea
+    id: tests
+    attributes:
+      label: Test code (optional)
+      description: The second code block, if the LLM wrote one.
+      render: python
+  - type: textarea
+    id: notes
+    attributes:
+      label: Anything else? (optional)
+      description: Which LLM you used, what you saw when you previewed it, things you are unsure about.
+  - type: checkboxes
+    id: licence
+    attributes:
+      label: Licence
+      options:
+        - label: I agree this is released under the MIT licence, and I am not copying someone else's code.
+          required: true

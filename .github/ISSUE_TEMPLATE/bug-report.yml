@@ -1,0 +1,24 @@
+name: Bug report
+description: A component renders wrong, crashes, or the library breaks.
+labels: ["bug"]
+body:
+  - type: input
+    id: component
+    attributes: { label: Component name }
+    validations: { required: true }
+  - type: textarea
+    id: params
+    attributes:
+      label: Parameters you used
+      description: The JSON, or "the component's example".
+      render: json
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations: { required: true }
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: OS, Python version, `pip list | grep -i manim`.

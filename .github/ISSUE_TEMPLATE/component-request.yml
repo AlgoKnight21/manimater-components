@@ -1,0 +1,27 @@
+name: Component request
+description: Ask for an animation component that does not exist yet. Someone (or an LLM) may build it.
+title: "Request: "
+labels: ["component-request"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What should it show?
+      description: 'Describe what changes on screen. Example: "two numbers added in binary with the carries highlighted".'
+    validations: { required: true }
+  - type: input
+    id: audience
+    attributes:
+      label: Who is it for?
+      placeholder: "e.g. first-year electrical engineering students"
+  - type: textarea
+    id: params
+    attributes:
+      label: What should be adjustable?
+      description: The numbers, labels or choices someone should be able to change.
+  - type: checkboxes
+    id: build
+    attributes:
+      label: Can you help build it?
+      options:
+        - label: I will try to generate it with an LLM and submit it (see docs/GENERATE_WITH_AN_LLM.md).

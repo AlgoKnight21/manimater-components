@@ -1,5 +1,91 @@
 # manimater-components
 
-**Open-source, tested, reusable Manim animation components.** The component library behind [Manimater](https://github.com/bishnt/manimater).
+**Open-source, tested, reusable animation components for [Manim](https://www.manim.community/).**
+91 components across 12 subjects: electrical and power systems, control and signals, microelectronics, machine learning,
+computer science, finance, physics, chemistry, databases and more. Each is written once, tested, and driven by plain JSON.
 
-Work in progress: full README coming in the next commit.
+This is the component library behind [Manimater](https://github.com/bishnt/manimater), which turns a prompt into a narrated
+explainer video. It is open source (MIT) and it is the part of Manimater we want the world to build on.
+
+```jsonc
+// A component is a name plus parameters. No animation code.
+{ "component": "synchronous_motor", "params": { "poles": 2, "frequency_hz": 50 } }
+```
+
+## Why components
+
+- **No generated code.** An LLM (or you) only picks a component and fills in its parameters as JSON. `manimate.storyboard`
+  validates every value against the catalog before anything runs, so nothing arbitrary is executed.
+- **Tested.** Every component has an `example` that must render, and CI dry-runs all of them against a real Manim scene.
+- **Reusable.** Written once, used in every video. Adding a component makes every project that uses the library better.
+- **Built on the community.** 27 components draw with open-source Manim plugins, all credited in
+  [docs/THIRD_PARTY.md](docs/THIRD_PARTY.md).
+
+## Quick start
+
+```bash
+git clone https://github.com/bishnt/manimater-components && cd manimater-components
+# Manim needs ffmpeg, Cairo and Pango (https://docs.manim.community/en/stable/installation.html).
+pip install -e ".[dev]"
+./scripts/install_plugins.sh          # the community Manim packages some components wrap (optional)
+
+python -m manimate.preview --list     # every component
+python -m manimate.preview callout    # renders previews/callout.mp4 from the component's own example
+```
+
+Use it from Python:
+
+```python
+from manimate import registry
+from manimate.components import load_all
+from manimate.storyboard import validate
+
+load_all()
+comp = registry.get("bar_chart")
+print(comp.example)                                  # parameters that are known to render
+
+storyboard, errors = validate({"title": "Demo", "scenes": [
+    {"component": "bar_chart", "params": comp.example, "narration": "Synchronous speed by pole count."}]})
+```
+
+`catalog.json` is the machine-readable list of every component (name, domain, description, parameters, example). Hand it
+to an LLM as the menu it picks from.
+
+## Use it with Claude
+
+This repo ships a Claude skill, [`skills/manimater-components`](skills/manimater-components/SKILL.md). It teaches Claude to
+pick components from the catalog, write valid storyboards, preview them, and write new components that follow the rules.
+In Claude Code it is picked up automatically when you open this repo (`.claude/skills/`). In claude.ai, upload the folder
+under Settings, Capabilities, Skills.
+
+## Contribute
+
+New components are the best way to help, and you do not have to code.
+
+- **Developer:** copy [`_template.py`](manimate/components/community/_template.py) into `manimate/components/community/`,
+  see [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/WRITING_A_COMPONENT.md](docs/WRITING_A_COMPONENT.md).
+- **Not a developer:** describe the animation you want to any LLM, paste the result into a form, and we turn it into a pull
+  request for you. Start with [docs/GENERATE_WITH_AN_LLM.md](docs/GENERATE_WITH_AN_LLM.md).
+
+## Layout
+
+| Path | What |
+|---|---|
+| `manimate/components/` | Component packs (one module per subject). Registers itself with the registry. |
+| `manimate/components/community/` | **Your contribution goes here**: one file per component, auto-loaded. |
+| `manimate/viz/` | Lower-level 3Blue1Brown-style building blocks: `core`, `ml_advanced`, `microelectronics`, `signals`, `power`, `finance`. |
+| `manimate/registry.py`, `ctx.py`, `theme.py` | The `@component` decorator, the per-scene time budget and layout helpers, the colours. |
+| `manimate/storyboard.py`, `catalog.py` | Validate JSON against the library; export `catalog.json`. |
+| `manimate/preview.py` | Render one component to MP4. |
+| `skills/manimater-components/` | The Claude skill. |
+| `tests/` | Fast tests plus a dry run of every component. |
+
+## Relationship to Manimater
+
+[Manimater](https://github.com/bishnt/manimater) uses this library to render videos, and the two copies are kept in sync by
+CI: a change merged here is proposed to the app as a pull request, and a component change made in the app is mirrored
+here. The synced paths are listed in [docs/SYNC.md](docs/SYNC.md).
+
+## License
+
+MIT. Each community plugin keeps its own licence: see [docs/THIRD_PARTY.md](docs/THIRD_PARTY.md).

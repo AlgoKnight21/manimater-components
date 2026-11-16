@@ -26,6 +26,8 @@ jobs:
       - run: pytest                         # fast tests, including a dry run of every component
       - name: catalog.json is up to date
         run: python -m manimate.catalog | diff - catalog.json
+      - name: Generated docs and the Claude skill reference are up to date
+        run: python scripts/gen_docs.py --check
 
   slow:
     # Real renders (minutes). Skipped on pull requests to keep them quick; runs on main and weekly.
