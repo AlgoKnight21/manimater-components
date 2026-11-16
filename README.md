@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/bishnt/manimater">
-    <img src="assets/banner.svg" alt="Manimater: the open source component library" width="100%">
+    <img src="assets/banner.svg" alt="manimater-components: the open source component library" width="100%">
   </a>
 </p>
 
@@ -11,8 +11,6 @@
 
 <p align="center">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-000000?style=flat-square&labelColor=000000"></a>
-  <img alt="91 components" src="https://img.shields.io/badge/components-91-000000?style=flat-square&labelColor=000000">
-  <img alt="12 subjects" src="https://img.shields.io/badge/subjects-12-000000?style=flat-square&labelColor=000000">
   <a href="CONTRIBUTING.md"><img alt="Contributions welcome" src="https://img.shields.io/badge/contributions-welcome-ffffff?style=flat-square&labelColor=000000&color=ffffff"></a>
 </p>
 
@@ -28,7 +26,7 @@
 
 # manimater-components
 
-91 components across 12 subjects: electrical and power systems, control and signals, microelectronics, machine learning,
+Components across many subjects: electrical and power systems, control and signals, microelectronics, machine learning,
 computer science, finance, physics, chemistry, databases and more. Each is written once, tested, and driven by plain JSON.
 
 Manimater turns a prompt into a narrated explainer video. This library is what makes that possible, and it is open source
