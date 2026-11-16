@@ -1,4 +1,4 @@
-"""Export the component catalog: ``python -m manimate.catalog > catalog.json``."""
+"""Export the component catalog: ``manimate-catalog > catalog.json``."""
 from __future__ import annotations
 
 import json
@@ -12,5 +12,11 @@ def build_catalog() -> list[dict]:
     return [c.to_catalog() for c in registry.all_components()]
 
 
-if __name__ == "__main__":
+def main() -> int:
+    """Write the component catalog as JSON to standard output."""
     print(json.dumps(build_catalog(), indent=2, ensure_ascii=False))
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
