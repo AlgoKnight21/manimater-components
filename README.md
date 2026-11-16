@@ -1,11 +1,38 @@
+<p align="center">
+  <a href="https://github.com/bishnt/manimater">
+    <img src="assets/banner.svg" alt="Manimater: the open source component library" width="100%">
+  </a>
+</p>
+
+<p align="center">
+  <b>Open-source, tested, reusable animation components for <a href="https://www.manim.community/">Manim</a>.</b><br>
+  The <b>open source library</b> behind <a href="https://github.com/bishnt/manimater">Manimater</a>, and the part we want the world to build on.
+</p>
+
+<p align="center">
+  <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-000000?style=flat-square&labelColor=000000"></a>
+  <img alt="91 components" src="https://img.shields.io/badge/components-91-000000?style=flat-square&labelColor=000000">
+  <img alt="12 subjects" src="https://img.shields.io/badge/subjects-12-000000?style=flat-square&labelColor=000000">
+  <a href="CONTRIBUTING.md"><img alt="Contributions welcome" src="https://img.shields.io/badge/contributions-welcome-ffffff?style=flat-square&labelColor=000000&color=ffffff"></a>
+</p>
+
+<p align="center">
+  <a href="#quick-start">Quick start</a> ·
+  <a href="CONTRIBUTING.md">Contribute</a> ·
+  <a href="docs/WRITING_A_COMPONENT.md">Write a component</a> ·
+  <a href="catalog.json">Catalog</a> ·
+  <a href="https://github.com/bishnt/manimater">Manimater</a>
+</p>
+
+---
+
 # manimater-components
 
-**Open-source, tested, reusable animation components for [Manim](https://www.manim.community/).**
 91 components across 12 subjects: electrical and power systems, control and signals, microelectronics, machine learning,
 computer science, finance, physics, chemistry, databases and more. Each is written once, tested, and driven by plain JSON.
 
-This is the component library behind [Manimater](https://github.com/bishnt/manimater), which turns a prompt into a narrated
-explainer video. It is open source (MIT) and it is the part of Manimater we want the world to build on.
+Manimater turns a prompt into a narrated explainer video. This library is what makes that possible, and it is open source
+(MIT) so that anyone can use it, extend it and ship their own videos with it.
 
 ```jsonc
 // A component is a name plus parameters. No animation code.
@@ -89,3 +116,10 @@ here. The synced paths are listed in [docs/SYNC.md](docs/SYNC.md).
 ## License
 
 MIT. Each community plugin keeps its own licence: see [docs/THIRD_PARTY.md](docs/THIRD_PARTY.md).
+
+---
+
+<p align="center">
+  <a href="https://github.com/bishnt/manimater"><img src="assets/logo.svg" alt="Manimater" width="40"></a><br>
+  <sub>Manimater is built on this open source library. The logo and banner in <a href="assets/"><code>assets/</code></a> are the Manimater marks.</sub>
+</p>
