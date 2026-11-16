@@ -87,6 +87,13 @@ def test_bad_expression_fails_validation():
     assert errs
 
 
+@pytest.mark.parametrize(("expression", "expected"), [("x^0.5", 4.0), ("sqrt(x**0.5)", 2.0)])
+def test_safe_expr_handles_fractional_powers_outside_the_real_domain(expression, expected):
+    f = compile_expr(expression)
+    assert f(-4) == 0.0
+    assert f(16) == expected
+
+
 def test_power_pack_registered():
     names = {c["name"] for c in build_catalog()}
     assert {"transformer", "power_triangle", "torque_speed_curve"} <= names
