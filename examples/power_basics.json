@@ -1,0 +1,9 @@
+{
+  "title": "Transformers, power factor and motor torque",
+  "scenes": [
+    {"component": "title_card", "params": {"title": "Power Basics", "subtitle": "Transformers, power factor and motors"}, "narration": "Three ideas that power every grid: transformers, power factor and motor torque."},
+    {"component": "transformer", "params": {"turns_ratio": 0.5, "primary_volts": 11000, "title": "Step-down transformer"}, "narration": "A transformer links two windings through a shared magnetic flux. With half as many secondary turns, the voltage is halved, so this one steps eleven thousand volts down."},
+    {"component": "power_triangle", "params": {"real_power_kw": 4, "power_factor": 0.8, "lagging": true, "title": "Power triangle"}, "narration": "Real power P and reactive power Q combine into apparent power S. The angle between P and S sets the power factor."},
+    {"component": "torque_speed_curve", "params": {"motor": "induction", "title": "Induction motor"}, "narration": "An induction motor starts with torque, peaks at breakdown, then settles just below synchronous speed."}
+  ]
+}

@@ -1,0 +1,3240 @@
+[
+  {
+    "name": "bar_chart",
+    "domain": "general",
+    "description": "A simple bar chart comparing 2-8 values.",
+    "params": {
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Chart title",
+        "default": ""
+      },
+      "labels": {
+        "type": "string[]",
+        "required": true,
+        "description": "Category names"
+      },
+      "values": {
+        "type": "number[]",
+        "required": true,
+        "description": "One number per label"
+      },
+      "unit": {
+        "type": "string",
+        "required": false,
+        "description": "Unit shown after each value, e.g. 'rpm'",
+        "default": ""
+      }
+    },
+    "example": {
+      "title": "Synchronous speed at 50 Hz",
+      "labels": [
+        "2 poles",
+        "4 poles",
+        "6 poles"
+      ],
+      "values": [
+        3000,
+        1500,
+        1000
+      ],
+      "unit": "rpm"
+    }
+  },
+  {
+    "name": "block_flow",
+    "domain": "general",
+    "description": "A left-to-right chain of labelled blocks joined by arrows, with a bright pulse travelling through it to show how a signal, request or piece of data moves from the first block to the last.",
+    "params": {
+      "blocks": {
+        "type": "string[]",
+        "required": true,
+        "description": "the stages in order (2 to 6 short labels (a few words each))"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "optional heading above the chain",
+        "default": ""
+      }
+    },
+    "example": {
+      "blocks": [
+        "Sensor",
+        "Filter",
+        "Controller",
+        "Motor"
+      ],
+      "title": "How the signal flows"
+    }
+  },
+  {
+    "name": "bullet_points",
+    "domain": "general",
+    "description": "A heading with up to 6 key points revealed one by one. Good for lists of facts or steps.",
+    "params": {
+      "heading": {
+        "type": "string",
+        "required": true,
+        "description": "Slide heading"
+      },
+      "points": {
+        "type": "string[]",
+        "required": true,
+        "description": "3-6 short points (under 70 characters each)"
+      }
+    },
+    "example": {
+      "heading": "Main parts",
+      "points": [
+        "Stator carries the 3-phase winding",
+        "Rotor carries the DC field",
+        "Air gap links them"
+      ]
+    }
+  },
+  {
+    "name": "callout",
+    "domain": "general",
+    "description": "A highlighted box for one key takeaway, definition, or warning. Good as the final scene.",
+    "params": {
+      "text": {
+        "type": "string",
+        "required": true,
+        "description": "The message, one or two sentences"
+      },
+      "kind": {
+        "type": "string",
+        "required": false,
+        "description": "Style of the box",
+        "default": "takeaway",
+        "choices": [
+          "takeaway",
+          "definition",
+          "warning"
+        ]
+      }
+    },
+    "example": {
+      "text": "A synchronous motor runs at exactly the speed of the rotating field.",
+      "kind": "takeaway"
+    }
+  },
+  {
+    "name": "compare_two",
+    "domain": "general",
+    "description": "Two columns comparing two things side by side, each with a title and 2-5 points.",
+    "params": {
+      "left_title": {
+        "type": "string",
+        "required": true,
+        "description": "Left column title"
+      },
+      "left_points": {
+        "type": "string[]",
+        "required": true,
+        "description": "Left points"
+      },
+      "right_title": {
+        "type": "string",
+        "required": true,
+        "description": "Right column title"
+      },
+      "right_points": {
+        "type": "string[]",
+        "required": true,
+        "description": "Right points"
+      }
+    },
+    "example": {
+      "left_title": "Synchronous",
+      "left_points": [
+        "Constant speed",
+        "Needs DC excitation"
+      ],
+      "right_title": "Induction",
+      "right_points": [
+        "Speed drops with load",
+        "No rotor supply"
+      ]
+    }
+  },
+  {
+    "name": "concept_map",
+    "domain": "general",
+    "description": "Concept map: a central idea with branches and sub-ideas spreading both ways.",
+    "params": {
+      "center": {
+        "type": "string",
+        "required": true,
+        "description": "the central idea"
+      },
+      "branches": {
+        "type": "string[]",
+        "required": true,
+        "description": "2-6 items written 'Branch: sub, sub' (up to 4 subs each)"
+      }
+    },
+    "example": {
+      "center": "Renewable energy",
+      "branches": [
+        "Solar: panels, farms",
+        "Wind: onshore, offshore",
+        "Hydro: dams",
+        "Storage: batteries"
+      ]
+    },
+    "plugin": {
+      "name": "manim-extensions",
+      "url": "https://github.com/ExploreMaths/manim_extensions",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "equation",
+    "domain": "general",
+    "description": "Shows one formula (LaTeX) with an optional title and a legend explaining each symbol.",
+    "params": {
+      "latex": {
+        "type": "string",
+        "required": true,
+        "description": "LaTeX without $ delimiters, e.g. N_s = \\frac{120 f}{P}"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "What the formula gives, e.g. 'Synchronous speed'",
+        "default": ""
+      },
+      "terms": {
+        "type": "string[]",
+        "required": false,
+        "description": "Legend lines like 'f: supply frequency (Hz)'",
+        "default": []
+      }
+    },
+    "example": {
+      "latex": "N_s = \\frac{120\\,f}{P}",
+      "title": "Synchronous speed",
+      "terms": [
+        "N_s: speed in rpm",
+        "f: supply frequency in Hz",
+        "P: number of poles"
+      ]
+    }
+  },
+  {
+    "name": "flowchart",
+    "domain": "general",
+    "description": "A chain of 2-8 labelled boxes connected by arrows (process, signal path, cause and effect).",
+    "params": {
+      "steps": {
+        "type": "string[]",
+        "required": true,
+        "description": "Box labels in order, under 30 characters each"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Chart title",
+        "default": ""
+      }
+    },
+    "example": {
+      "steps": [
+        "AC supply",
+        "Rotating field",
+        "Rotor locks on",
+        "Shaft torque"
+      ],
+      "title": "How it runs"
+    }
+  },
+  {
+    "name": "focus_ring",
+    "domain": "general",
+    "description": "A pulsing ring drawn round one idea in a row to say 'look here', optionally moving on to a second one.",
+    "params": {
+      "items": {
+        "type": "string[]",
+        "required": true,
+        "description": "the ideas shown side by side (2 to 6 short labels (a few words each))"
+      },
+      "focus": {
+        "type": "integer",
+        "required": false,
+        "description": "which item to ring first, counting from 0",
+        "default": 0
+      },
+      "then": {
+        "type": "integer",
+        "required": false,
+        "description": "optional second item to move the ring to, counting from 0; -1 for none",
+        "default": -1
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "optional heading above the row",
+        "default": ""
+      }
+    },
+    "example": {
+      "items": [
+        "Request",
+        "Cache",
+        "Database"
+      ],
+      "focus": 1,
+      "then": 2,
+      "title": ""
+    }
+  },
+  {
+    "name": "function_plot",
+    "domain": "general",
+    "description": "Plots y = f(x) on labelled axes. Expression may use x, pi, e, sin, cos, tan, exp, log, sqrt, abs, + - * / ^.",
+    "params": {
+      "expression": {
+        "type": "string",
+        "required": true,
+        "description": "e.g. 'sin(x)' or 'x^2/4'"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Plot title",
+        "default": ""
+      },
+      "x_min": {
+        "type": "number",
+        "required": false,
+        "description": "Left limit of x",
+        "default": -6.3
+      },
+      "x_max": {
+        "type": "number",
+        "required": false,
+        "description": "Right limit of x",
+        "default": 6.3
+      },
+      "y_min": {
+        "type": "number",
+        "required": false,
+        "description": "Bottom limit of y",
+        "default": -1.5
+      },
+      "y_max": {
+        "type": "number",
+        "required": false,
+        "description": "Top limit of y",
+        "default": 1.5
+      },
+      "x_label": {
+        "type": "string",
+        "required": false,
+        "description": "x-axis label",
+        "default": "x"
+      },
+      "y_label": {
+        "type": "string",
+        "required": false,
+        "description": "y-axis label",
+        "default": "y"
+      }
+    },
+    "example": {
+      "expression": "sin(x)",
+      "title": "A sine wave",
+      "x_label": "angle",
+      "y_label": "value"
+    }
+  },
+  {
+    "name": "hierarchy_tree",
+    "domain": "general",
+    "description": "Hierarchy tree (org chart or taxonomy): a root with parents and children below it.",
+    "params": {
+      "center": {
+        "type": "string",
+        "required": true,
+        "description": "the root of the tree"
+      },
+      "branches": {
+        "type": "string[]",
+        "required": true,
+        "description": "2-6 items written 'Branch: sub, sub' (up to 4 subs each)"
+      }
+    },
+    "example": {
+      "center": "Renewable energy",
+      "branches": [
+        "Solar: panels, farms",
+        "Wind: onshore, offshore",
+        "Hydro: dams",
+        "Storage: batteries"
+      ]
+    },
+    "plugin": {
+      "name": "manim-extensions",
+      "url": "https://github.com/ExploreMaths/manim_extensions",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "spotlight",
+    "domain": "general",
+    "description": "Stage-light focus: a row of ideas appears, then everything dims except the one the narration is about, then the lights come back up. Good for 'of all these, this is the one that matters'.",
+    "params": {
+      "items": {
+        "type": "string[]",
+        "required": true,
+        "description": "the ideas shown side by side (2 to 6 short labels (a few words each))"
+      },
+      "focus": {
+        "type": "integer",
+        "required": false,
+        "description": "which item to light up, counting from 0",
+        "default": 0
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "optional heading above the row",
+        "default": ""
+      }
+    },
+    "example": {
+      "items": [
+        "Input",
+        "Hidden layer",
+        "Output"
+      ],
+      "focus": 1,
+      "title": "Where the learning happens"
+    }
+  },
+  {
+    "name": "timeline",
+    "domain": "general",
+    "description": "Timeline: events in order, each a year and a short description, highlighted one by one.",
+    "params": {
+      "events": {
+        "type": "string[]",
+        "required": true,
+        "description": "2-8 items written 'year: description'"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "title in the middle of the line",
+        "default": "Timeline"
+      }
+    },
+    "example": {
+      "events": [
+        "1879: Light bulb",
+        "1888: AC motor",
+        "1954: Solar cell",
+        "1991: Lithium-ion"
+      ],
+      "title": "Electrical milestones"
+    },
+    "plugin": {
+      "name": "manim-extensions",
+      "url": "https://github.com/ExploreMaths/manim_extensions",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "title_card",
+    "domain": "general",
+    "description": "Opening or section title with an optional subtitle. Use as the first scene.",
+    "params": {
+      "title": {
+        "type": "string",
+        "required": true,
+        "description": "Main title"
+      },
+      "subtitle": {
+        "type": "string",
+        "required": false,
+        "description": "Short subtitle",
+        "default": ""
+      }
+    },
+    "example": {
+      "title": "How a Synchronous Motor Works",
+      "subtitle": "Rotating fields and locked rotors"
+    }
+  },
+  {
+    "name": "bohr_atom",
+    "domain": "chemistry",
+    "description": "Bohr model of an atom (H to Ar): nucleus and orbiting electron shells, counts labelled.",
+    "params": {
+      "element": {
+        "type": "string",
+        "required": false,
+        "description": "symbol, H to Ar",
+        "default": "Na"
+      }
+    },
+    "example": {
+      "element": "Na"
+    },
+    "plugin": {
+      "name": "manim-chemistry",
+      "url": "https://github.com/UnMolDeQuimica/manim-chemistry",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "chemical_equation",
+    "domain": "chemistry",
+    "description": "A chemical equation with atom counts per element, showing whether it is balanced.",
+    "params": {
+      "equation": {
+        "type": "string",
+        "required": false,
+        "description": "e.g. '2H2 + O2 -> 2H2O'"
+      }
+    },
+    "example": {
+      "equation": "2H2 + O2 -> 2H2O"
+    },
+    "plugin": {
+      "name": "manim-chemistry",
+      "url": "https://github.com/UnMolDeQuimica/manim-chemistry",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "molecule_structure",
+    "domain": "chemistry",
+    "description": "Skeletal structure of a small organic molecule.",
+    "params": {
+      "molecule": {
+        "type": "string",
+        "required": false,
+        "description": "molecule",
+        "default": "ethanol",
+        "choices": [
+          "methanol",
+          "ethanol",
+          "acetic acid",
+          "acetone",
+          "ethene",
+          "ethyne",
+          "benzene",
+          "cyclohexane",
+          "glycine"
+        ]
+      }
+    },
+    "example": {
+      "molecule": "ethanol"
+    },
+    "plugin": {
+      "name": "manim-chemistry",
+      "url": "https://github.com/UnMolDeQuimica/manim-chemistry",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "array_sort",
+    "domain": "computer-science",
+    "description": "Bubble, selection or insertion sort of a short array, step by step.",
+    "params": {
+      "values": {
+        "type": "number[]",
+        "required": false,
+        "description": "2-8 whole numbers 0-99, e.g. [5, 2, 8, 1, 9]"
+      },
+      "algorithm": {
+        "type": "string",
+        "required": false,
+        "description": "algorithm",
+        "default": "bubble",
+        "choices": [
+          "bubble",
+          "selection",
+          "insertion"
+        ]
+      }
+    },
+    "example": {
+      "values": [
+        5,
+        2,
+        8,
+        1,
+        9
+      ],
+      "algorithm": "bubble"
+    },
+    "plugin": {
+      "name": "manim-dsa",
+      "url": "https://github.com/F4bbi/manim-dsa",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "big_o_growth",
+    "domain": "computer-science",
+    "description": "Plots how the work grows with input size n for several Big-O classes (O(1), O(log n), O(n), O(n log n), O(n^2), O(2^n)), so the gap between them is obvious.",
+    "params": {
+      "functions": {
+        "type": "string[]",
+        "required": false,
+        "description": "2-6 of: '1', 'log n', 'n', 'n log n', 'n^2', '2^n'",
+        "default": [
+          "1",
+          "log n",
+          "n",
+          "n log n",
+          "n^2"
+        ]
+      }
+    },
+    "example": {
+      "functions": [
+        "log n",
+        "n",
+        "n log n",
+        "n^2",
+        "2^n"
+      ]
+    }
+  },
+  {
+    "name": "binary_representation",
+    "domain": "computer-science",
+    "description": "Shows how a number from 0 to 255 is written in binary: eight bits with place values 128 to 1, deciding each bit by subtraction, then adding the lit places back up.",
+    "params": {
+      "value": {
+        "type": "integer",
+        "required": true,
+        "description": "a whole number from 0 to 255"
+      }
+    },
+    "example": {
+      "value": 170
+    }
+  },
+  {
+    "name": "binary_search",
+    "domain": "computer-science",
+    "description": "Binary search in a sorted array: look at the middle, discard the half that cannot hold the target, repeat. Shows why it takes about log2(n) steps.",
+    "params": {
+      "values": {
+        "type": "number[]",
+        "required": true,
+        "description": "3-8 whole numbers 0-99 (sorted for you), e.g. [3, 8, 15, 23, 42, 57, 71]"
+      },
+      "target": {
+        "type": "integer",
+        "required": true,
+        "description": "the number to look for, 0-99"
+      }
+    },
+    "example": {
+      "values": [
+        3,
+        8,
+        15,
+        23,
+        42,
+        57,
+        71
+      ],
+      "target": 57
+    }
+  },
+  {
+    "name": "binary_search_tree",
+    "domain": "computer-science",
+    "description": "Binary search tree from inserted values, optionally traversed.",
+    "params": {
+      "values": {
+        "type": "number[]",
+        "required": false,
+        "description": "2-8 different numbers 0-99, in insertion order"
+      },
+      "traversal": {
+        "type": "string",
+        "required": false,
+        "description": "walk to animate",
+        "default": "inorder",
+        "choices": [
+          "none",
+          "inorder",
+          "preorder",
+          "postorder"
+        ]
+      }
+    },
+    "example": {
+      "values": [
+        8,
+        3,
+        10,
+        1,
+        6,
+        14
+      ],
+      "traversal": "inorder"
+    },
+    "plugin": {
+      "name": "manim-dsa",
+      "url": "https://github.com/F4bbi/manim-dsa",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "dp_table",
+    "domain": "computer-science",
+    "description": "Dynamic programming on the longest common subsequence of two short words: the table is filled cell by cell from smaller sub-problems, then traced back to read the answer.",
+    "params": {
+      "a": {
+        "type": "string",
+        "required": true,
+        "description": "first word, 2-6 letters, e.g. 'ABCBD'"
+      },
+      "b": {
+        "type": "string",
+        "required": true,
+        "description": "second word, 2-6 letters, e.g. 'BDCAB'"
+      }
+    },
+    "example": {
+      "a": "ABCBD",
+      "b": "BDCAB"
+    }
+  },
+  {
+    "name": "file_tree",
+    "domain": "computer-science",
+    "description": "Folder and file tree of a project, with chosen files highlighted in turn.",
+    "params": {
+      "paths": {
+        "type": "string[]",
+        "required": true,
+        "description": "2-8 file paths such as 'src/main.py'"
+      },
+      "highlight": {
+        "type": "string[]",
+        "required": false,
+        "description": "up to 4 of those paths (folders or files) to point out"
+      }
+    },
+    "example": {
+      "paths": [
+        "src/main.py",
+        "src/utils/helpers.py",
+        "README.md",
+        "tests/test_main.py"
+      ],
+      "highlight": [
+        "src/main.py",
+        "tests"
+      ]
+    },
+    "plugin": {
+      "name": "manim-extensions",
+      "url": "https://github.com/ExploreMaths/manim_extensions",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "graph_traversal",
+    "domain": "computer-science",
+    "description": "BFS or DFS on a small undirected graph, showing the visit order.",
+    "params": {
+      "edges": {
+        "type": "string[]",
+        "required": false,
+        "description": "1-8 edges like 'A-B'"
+      },
+      "start": {
+        "type": "string",
+        "required": false,
+        "description": "start node",
+        "default": "A"
+      },
+      "algorithm": {
+        "type": "string",
+        "required": false,
+        "description": "search strategy",
+        "default": "bfs",
+        "choices": [
+          "bfs",
+          "dfs"
+        ]
+      }
+    },
+    "example": {
+      "edges": [
+        "A-B",
+        "A-C",
+        "B-D",
+        "C-D",
+        "D-E"
+      ],
+      "start": "A",
+      "algorithm": "bfs"
+    },
+    "plugin": {
+      "name": "manim-dsa",
+      "url": "https://github.com/F4bbi/manim-dsa",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "hash_table",
+    "domain": "computer-science",
+    "description": "Hash table with chaining: each key is hashed to a bucket (sum of character codes mod table size) and collisions form a chain. Shows O(1) lookup and what a collision is.",
+    "params": {
+      "keys": {
+        "type": "string[]",
+        "required": true,
+        "description": "2-6 short keys (1-10 ASCII characters), e.g. ['cat', 'dog', 'bee', 'ant']"
+      },
+      "size": {
+        "type": "integer",
+        "required": false,
+        "description": "number of buckets, 4-8",
+        "default": 5,
+        "choices": [
+          4,
+          5,
+          6,
+          7,
+          8
+        ]
+      }
+    },
+    "example": {
+      "keys": [
+        "cat",
+        "dog",
+        "act",
+        "bee"
+      ],
+      "size": 5
+    }
+  },
+  {
+    "name": "linked_list_reverse",
+    "domain": "computer-science",
+    "description": "Reverses a singly linked list in place with the prev / curr / next pointers, flipping one arrow per step.",
+    "params": {
+      "values": {
+        "type": "string[]",
+        "required": true,
+        "description": "3-6 short node values (1-4 characters), e.g. ['1', '2', '3', '4']"
+      }
+    },
+    "example": {
+      "values": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ]
+    }
+  },
+  {
+    "name": "queue_operations",
+    "domain": "computer-science",
+    "description": "A queue of capacity 5 starting with 1, 2, 3: enqueue at the back, dequeue from the front (first in, first out).",
+    "params": {
+      "operations": {
+        "type": "string[]",
+        "required": true,
+        "description": "up to 8 steps: 'enqueue 4' or 'dequeue' (never more than 5 items, never empty)"
+      }
+    },
+    "example": {
+      "operations": [
+        "enqueue 4",
+        "dequeue",
+        "dequeue",
+        "enqueue 5"
+      ]
+    },
+    "plugin": {
+      "name": "manim-extensions",
+      "url": "https://github.com/ExploreMaths/manim_extensions",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "recursion_tree",
+    "domain": "computer-science",
+    "description": "Call tree of the naive recursive Fibonacci fib(n): the tree is built level by level, then the repeated sub-calls are highlighted to show why plain recursion is wasteful (and why memoization helps).",
+    "params": {
+      "n": {
+        "type": "integer",
+        "required": false,
+        "description": "which Fibonacci number to compute, 2-5",
+        "default": 5,
+        "choices": [
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    "example": {
+      "n": 5
+    }
+  },
+  {
+    "name": "sequence_diagram",
+    "domain": "computer-science",
+    "description": "Sequence diagram: 2-5 participants with lifelines and up to 8 messages in order (requests solid, replies dashed). For TCP handshakes, HTTP requests, login flows, API calls.",
+    "params": {
+      "actors": {
+        "type": "string[]",
+        "required": true,
+        "description": "2-5 participant names, left to right, e.g. ['Client', 'Server']"
+      },
+      "messages": {
+        "type": "string[]",
+        "required": true,
+        "description": "up to 8 messages: 'Client->Server: SYN' for a request, 'Server-->Client: SYN-ACK' (two dashes) for a reply"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Heading",
+        "default": ""
+      }
+    },
+    "example": {
+      "actors": [
+        "Client",
+        "Server"
+      ],
+      "messages": [
+        "Client->Server: SYN",
+        "Server-->Client: SYN-ACK",
+        "Client->Server: ACK"
+      ],
+      "title": "TCP three-way handshake"
+    }
+  },
+  {
+    "name": "stack_operations",
+    "domain": "computer-science",
+    "description": "A stack (LIFO) as values are pushed on and popped off.",
+    "params": {
+      "operations": {
+        "type": "string[]",
+        "required": false,
+        "description": "1-8 of 'push N' or 'pop'"
+      }
+    },
+    "example": {
+      "operations": [
+        "push 3",
+        "push 7",
+        "push 1",
+        "pop",
+        "pop"
+      ]
+    },
+    "plugin": {
+      "name": "manim-dsa",
+      "url": "https://github.com/F4bbi/manim-dsa",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "block_diagram",
+    "domain": "control-systems",
+    "description": "Control block diagrams: a feedback loop with signal pulses, a PID controller's three parallel paths, a state-space diagram, or a cascade with a summing junction and live scopes.",
+    "params": {
+      "preset": {
+        "type": "string",
+        "required": false,
+        "description": "which diagram",
+        "default": "feedback",
+        "choices": [
+          "feedback",
+          "pid",
+          "state_space",
+          "cascade"
+        ]
+      },
+      "show_scopes": {
+        "type": "boolean",
+        "required": false,
+        "description": "animate signals through the cascade diagram",
+        "default": true
+      }
+    },
+    "example": {
+      "preset": "feedback",
+      "show_scopes": true
+    }
+  },
+  {
+    "name": "bode_plot",
+    "domain": "control-systems",
+    "description": "Bode plot (magnitude and phase against frequency) with straight-line asymptotes, a frequency sweep, and the gain and phase margins.",
+    "params": {
+      "poles": {
+        "type": "number[]",
+        "required": false,
+        "description": "poles as pairs real, imaginary, real, imaginary (up to 4 values); [-1, 0] is the single pole at -1",
+        "default": [
+          0,
+          0,
+          -1,
+          0,
+          -2,
+          0
+        ]
+      },
+      "zeros": {
+        "type": "number[]",
+        "required": false,
+        "description": "zeros as pairs real, imaginary, real, imaginary (up to 4 values); [-1, 0] is the single pole at -1",
+        "default": []
+      },
+      "gain": {
+        "type": "number",
+        "required": false,
+        "description": "loop gain",
+        "default": 1
+      },
+      "asymptotes": {
+        "type": "boolean",
+        "required": false,
+        "description": "draw the straight-line approximation",
+        "default": true
+      }
+    },
+    "example": {
+      "poles": [
+        0,
+        0,
+        -1,
+        0,
+        -2,
+        0
+      ],
+      "zeros": [],
+      "gain": 10,
+      "asymptotes": true
+    }
+  },
+  {
+    "name": "nyquist_plot",
+    "domain": "control-systems",
+    "description": "Nyquist plot of a loop transfer function traced around the critical point minus one, with its mirror image and the encirclement count that decides stability.",
+    "params": {
+      "poles": {
+        "type": "number[]",
+        "required": false,
+        "description": "poles as pairs real, imaginary, real, imaginary (up to 4 values); [-1, 0] is the single pole at -1",
+        "default": [
+          0,
+          0,
+          -1,
+          0,
+          -2,
+          0
+        ]
+      },
+      "zeros": {
+        "type": "number[]",
+        "required": false,
+        "description": "zeros as pairs real, imaginary, real, imaginary (up to 4 values); [-1, 0] is the single pole at -1",
+        "default": []
+      },
+      "gain": {
+        "type": "number",
+        "required": false,
+        "description": "loop gain",
+        "default": 1
+      }
+    },
+    "example": {
+      "poles": [
+        0,
+        0,
+        -1,
+        0,
+        -2,
+        0
+      ],
+      "zeros": [],
+      "gain": 10
+    }
+  },
+  {
+    "name": "pid_response",
+    "domain": "control-systems",
+    "description": "PID tuning on a plant's step response: proportional gain alone leaves an offset and ringing, integral action closes the gap, derivative action damps the overshoot.",
+    "params": {
+      "plant": {
+        "type": "string",
+        "required": false,
+        "description": "the system being controlled",
+        "default": "second_order",
+        "choices": [
+          "first_order",
+          "second_order",
+          "integrator"
+        ]
+      },
+      "kp": {
+        "type": "number",
+        "required": false,
+        "description": "proportional gain, 0 to 20",
+        "default": 1
+      },
+      "ki": {
+        "type": "number",
+        "required": false,
+        "description": "integral gain, 0 to 20",
+        "default": 1
+      },
+      "kd": {
+        "type": "number",
+        "required": false,
+        "description": "derivative gain, 0 to 20",
+        "default": 1
+      }
+    },
+    "example": {
+      "plant": "second_order",
+      "kp": 4,
+      "ki": 2,
+      "kd": 1.5
+    }
+  },
+  {
+    "name": "pole_zero_map",
+    "domain": "control-systems",
+    "description": "Pole-zero map in the s-plane (stable on the left) or the z-plane (stable inside the unit circle), with a pole sliding to show how stability changes.",
+    "params": {
+      "poles": {
+        "type": "number[]",
+        "required": false,
+        "description": "poles as pairs real, imaginary, real, imaginary (up to 4 values); [-1, 0] is the single pole at -1",
+        "default": [
+          -0.5,
+          2,
+          -0.5,
+          -2,
+          -3,
+          0
+        ]
+      },
+      "zeros": {
+        "type": "number[]",
+        "required": false,
+        "description": "zeros as pairs real, imaginary, real, imaginary (up to 4 values); [-1, 0] is the single pole at -1",
+        "default": []
+      },
+      "domain": {
+        "type": "string",
+        "required": false,
+        "description": "s for continuous time, z for discrete time",
+        "default": "s",
+        "choices": [
+          "s",
+          "z"
+        ]
+      }
+    },
+    "example": {
+      "poles": [
+        -0.5,
+        2,
+        -0.5,
+        -2,
+        -3,
+        0
+      ],
+      "zeros": [
+        -1,
+        0
+      ],
+      "domain": "s"
+    }
+  },
+  {
+    "name": "root_locus",
+    "domain": "control-systems",
+    "description": "Root locus: the closed-loop poles walking across the s-plane as the gain increases from zero, with the critical gain where they cross into instability.",
+    "params": {
+      "poles": {
+        "type": "number[]",
+        "required": false,
+        "description": "open-loop poles as pairs real, imaginary, real, imaginary (up to 4 values); [-1, 0] is the single pole at -1",
+        "default": [
+          0,
+          0,
+          -1,
+          0,
+          -2,
+          0
+        ]
+      },
+      "zeros": {
+        "type": "number[]",
+        "required": false,
+        "description": "open-loop zeros as pairs real, imaginary, real, imaginary (up to 4 values); [-1, 0] is the single pole at -1",
+        "default": []
+      },
+      "k_max": {
+        "type": "number",
+        "required": false,
+        "description": "largest gain to sweep, 0.5 to 200",
+        "default": 10
+      }
+    },
+    "example": {
+      "poles": [
+        0,
+        0,
+        -1,
+        0,
+        -2,
+        0
+      ],
+      "zeros": [],
+      "k_max": 10
+    }
+  },
+  {
+    "name": "time_response",
+    "domain": "control-systems",
+    "description": "Step or impulse response of a system from its poles and zeros, with rise time, overshoot and settling time marked and the pole-zero map beside it.",
+    "params": {
+      "poles": {
+        "type": "number[]",
+        "required": false,
+        "description": "poles as pairs real, imaginary, real, imaginary (up to 4 values); [-1, 0] is the single pole at -1",
+        "default": [
+          -1,
+          2,
+          -1,
+          -2
+        ]
+      },
+      "zeros": {
+        "type": "number[]",
+        "required": false,
+        "description": "zeros as pairs real, imaginary, real, imaginary (up to 4 values); [-1, 0] is the single pole at -1",
+        "default": []
+      },
+      "gain": {
+        "type": "number",
+        "required": false,
+        "description": "overall gain",
+        "default": 1
+      },
+      "kind": {
+        "type": "string",
+        "required": false,
+        "description": "input signal",
+        "default": "step",
+        "choices": [
+          "step",
+          "impulse"
+        ]
+      }
+    },
+    "example": {
+      "poles": [
+        -1,
+        2,
+        -1,
+        -2
+      ],
+      "zeros": [],
+      "gain": 5,
+      "kind": "step"
+    }
+  },
+  {
+    "name": "btree_index",
+    "domain": "databases",
+    "description": "B-tree index built from keys, then one key inserted or searched.",
+    "params": {
+      "keys": {
+        "type": "number[]",
+        "required": false,
+        "description": "3-12 different numbers 0-99"
+      },
+      "then": {
+        "type": "string",
+        "required": false,
+        "description": "after building",
+        "default": "search",
+        "choices": [
+          "none",
+          "insert",
+          "search"
+        ]
+      },
+      "key": {
+        "type": "number",
+        "required": false,
+        "description": "key to insert or search, 0-99",
+        "default": 12
+      }
+    },
+    "example": {
+      "keys": [
+        10,
+        20,
+        5,
+        6,
+        12,
+        30,
+        7,
+        17
+      ],
+      "then": "search",
+      "key": 12
+    },
+    "plugin": {
+      "name": "manim-databases",
+      "url": "https://github.com/pg-pilot/manim-databases",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "database_table",
+    "domain": "databases",
+    "description": "A table as rows are inserted, updated, deleted or selected, with the SQL shown.",
+    "params": {
+      "columns": {
+        "type": "string[]",
+        "required": false,
+        "description": "2-5 column names; the first is the key"
+      },
+      "rows": {
+        "type": "string[]",
+        "required": false,
+        "description": "1-6 rows like '1, alice, shipped'"
+      },
+      "operations": {
+        "type": "string[]",
+        "required": false,
+        "description": "'insert a, b' | 'update row 2 col value' | 'delete row 1' | 'select row 2'",
+        "default": []
+      }
+    },
+    "example": {
+      "columns": [
+        "id",
+        "customer",
+        "status"
+      ],
+      "rows": [
+        "1, alice, shipped",
+        "2, bob, pending"
+      ],
+      "operations": [
+        "insert 3, carol, shipped",
+        "update row 2 status shipped",
+        "delete row 1"
+      ]
+    },
+    "plugin": {
+      "name": "manim-databases",
+      "url": "https://github.com/pg-pilot/manim-databases",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "ac_waveform",
+    "domain": "electrical",
+    "description": "Animated sine wave(s) with a moving marker. Use 3 phases to show a balanced three-phase supply.",
+    "params": {
+      "phases": {
+        "type": "integer",
+        "required": false,
+        "description": "1 for single-phase, 3 for three-phase",
+        "default": 1,
+        "choices": [
+          1,
+          3
+        ]
+      },
+      "frequency_hz": {
+        "type": "number",
+        "required": false,
+        "description": "Supply frequency, used for the period note",
+        "default": 50
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Heading",
+        "default": ""
+      }
+    },
+    "example": {
+      "phases": 3,
+      "frequency_hz": 50,
+      "title": "Three-phase supply"
+    }
+  },
+  {
+    "name": "circuit",
+    "domain": "electrical",
+    "description": "A closed loop circuit with 1-6 elements and animated current flow. Element format 'type:label'; types: battery, ac_source, resistor, capacitor, inductor, lamp, switch.",
+    "params": {
+      "elements": {
+        "type": "string[]",
+        "required": true,
+        "description": "e.g. ['battery:12 V', 'resistor:R = 4 Ω', 'capacitor:C']"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Heading",
+        "default": ""
+      }
+    },
+    "example": {
+      "elements": [
+        "ac_source:230 V",
+        "resistor:R",
+        "inductor:L"
+      ],
+      "title": "Series RL circuit"
+    }
+  },
+  {
+    "name": "circuit_diagram",
+    "domain": "electrical",
+    "description": "Circuit schematic of 1-6 standard symbols. Types: cell, resistor, variable_resistor, capacitor, inductor, switch, closed_switch, diode, zener, thermistor.",
+    "params": {
+      "elements": {
+        "type": "string[]",
+        "required": false,
+        "description": "'type:label' round the loop, e.g. ['cell:12 V', 'resistor:R_1']"
+      },
+      "current": {
+        "type": "string",
+        "required": false,
+        "description": "current arrow label, e.g. 'I'",
+        "default": ""
+      }
+    },
+    "example": {
+      "elements": [
+        "cell:12 V",
+        "resistor:R_1",
+        "switch:S",
+        "diode:D"
+      ],
+      "current": "I"
+    },
+    "plugin": {
+      "name": "manim-eng",
+      "url": "https://github.com/overegneered/manim-eng",
+      "license": "MIT, no AI-model training"
+    }
+  },
+  {
+    "name": "phasor_diagram",
+    "domain": "electrical",
+    "description": "Rotating phasor arrows on a circle. Shows magnitude and phase angle of voltages or currents (empty list = balanced three-phase set).",
+    "params": {
+      "phasors": {
+        "type": "object[]",
+        "required": false,
+        "description": "Up to 6 phasors",
+        "default": [],
+        "items": "{label: string, magnitude: number, angle_deg: number}"
+      },
+      "rotate": {
+        "type": "boolean",
+        "required": false,
+        "description": "Spin the phasors counter-clockwise",
+        "default": true
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Heading",
+        "default": ""
+      }
+    },
+    "example": {
+      "phasors": [
+        {
+          "label": "Va",
+          "magnitude": 1,
+          "angle_deg": 0
+        },
+        {
+          "label": "Vb",
+          "magnitude": 1,
+          "angle_deg": -120
+        },
+        {
+          "label": "Vc",
+          "magnitude": 1,
+          "angle_deg": 120
+        }
+      ],
+      "rotate": true,
+      "title": "Phasors"
+    }
+  },
+  {
+    "name": "power_triangle",
+    "domain": "electrical",
+    "description": "Right triangle of real power P, reactive power Q and apparent power S with the power-factor angle. Use for power factor and reactive power.",
+    "params": {
+      "real_power_kw": {
+        "type": "number",
+        "required": false,
+        "description": "Real power P in kW, above 0",
+        "default": 4
+      },
+      "power_factor": {
+        "type": "number",
+        "required": false,
+        "description": "Power factor cos(phi), between 0.1 and 1",
+        "default": 0.8
+      },
+      "lagging": {
+        "type": "boolean",
+        "required": false,
+        "description": "True for an inductive (lagging) load, false for a capacitive (leading) load",
+        "default": true
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Heading",
+        "default": ""
+      }
+    },
+    "example": {
+      "real_power_kw": 4,
+      "power_factor": 0.8,
+      "lagging": true,
+      "title": "Power triangle"
+    }
+  },
+  {
+    "name": "rotating_field",
+    "domain": "electrical",
+    "description": "Stator cross-section showing how three-phase currents create a rotating magnetic field, with the synchronous speed formula Ns = 120 f / P.",
+    "params": {
+      "poles": {
+        "type": "integer",
+        "required": false,
+        "description": "Number of poles",
+        "default": 2,
+        "choices": [
+          2,
+          4,
+          6
+        ]
+      },
+      "frequency_hz": {
+        "type": "number",
+        "required": false,
+        "description": "Supply frequency in Hz",
+        "default": 50
+      }
+    },
+    "example": {
+      "poles": 2,
+      "frequency_hz": 50
+    }
+  },
+  {
+    "name": "synchronous_motor",
+    "domain": "electrical",
+    "description": "Cross-section of a synchronous motor: the rotor locks onto the rotating stator field and turns at exactly synchronous speed; a dial and torque meter show the load angle growing as load increases.",
+    "params": {
+      "poles": {
+        "type": "integer",
+        "required": false,
+        "description": "Number of poles",
+        "default": 2,
+        "choices": [
+          2,
+          4,
+          6
+        ]
+      },
+      "frequency_hz": {
+        "type": "number",
+        "required": false,
+        "description": "Supply frequency in Hz",
+        "default": 50
+      }
+    },
+    "example": {
+      "poles": 2,
+      "frequency_hz": 50
+    }
+  },
+  {
+    "name": "torque_speed_curve",
+    "domain": "electrical",
+    "description": "Torque versus speed characteristic of a motor with a marker sliding along it. Use for comparing how motors behave under load.",
+    "params": {
+      "motor": {
+        "type": "string",
+        "required": false,
+        "description": "Motor type",
+        "default": "induction",
+        "choices": [
+          "induction",
+          "dc_shunt",
+          "dc_series",
+          "synchronous"
+        ]
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Heading",
+        "default": ""
+      }
+    },
+    "example": {
+      "motor": "induction",
+      "title": "Torque-speed curve"
+    }
+  },
+  {
+    "name": "transformer",
+    "domain": "electrical",
+    "description": "Two windings on an iron core: flux links them and the voltage scales by the turns ratio Vs/Vp = Ns/Np. Shows step-up or step-down.",
+    "params": {
+      "turns_ratio": {
+        "type": "number",
+        "required": false,
+        "description": "Ns/Np, between 0.1 and 10 (above 1 steps up, below 1 steps down)",
+        "default": 2
+      },
+      "primary_volts": {
+        "type": "number",
+        "required": false,
+        "description": "Primary voltage in volts, 1 to 1000000",
+        "default": 230
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Heading",
+        "default": ""
+      }
+    },
+    "example": {
+      "turns_ratio": 2,
+      "primary_volts": 230,
+      "title": "Step-up transformer"
+    }
+  },
+  {
+    "name": "ad_as_model",
+    "domain": "finance",
+    "description": "Aggregate demand and supply: a demand or supply shock, then the long-run return to potential output.",
+    "params": {
+      "event": {
+        "type": "string",
+        "required": false,
+        "description": "which shock",
+        "default": "positive_demand_shock",
+        "choices": [
+          "positive_demand_shock",
+          "negative_demand_shock",
+          "adverse_supply_shock",
+          "positive_supply_shock"
+        ]
+      },
+      "long_run": {
+        "type": "boolean",
+        "required": false,
+        "description": "also show the long-run adjustment",
+        "default": true
+      }
+    },
+    "example": {
+      "event": "positive_demand_shock",
+      "long_run": true
+    },
+    "plugin": {
+      "name": "manim-extensions",
+      "url": "https://github.com/ExploreMaths/manim_extensions",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "binomial_tree",
+    "domain": "finance",
+    "description": "Recombining price tree and a European call valued by working backward from the last step with risk-neutral probability.",
+    "params": {
+      "steps": {
+        "type": "integer",
+        "required": false,
+        "description": "steps, 2 to 4",
+        "default": 3
+      },
+      "up": {
+        "type": "number",
+        "required": false,
+        "description": "up factor per step, 1.02 to 1.5",
+        "default": 1.1
+      },
+      "down": {
+        "type": "number",
+        "required": false,
+        "description": "down factor per step, 0.5 to 0.98",
+        "default": 0.9
+      },
+      "rate": {
+        "type": "number",
+        "required": false,
+        "description": "interest rate per step, e.g. 0.02",
+        "default": 0.02
+      },
+      "strike": {
+        "type": "number",
+        "required": false,
+        "description": "strike price (start price is 100), 50 to 200",
+        "default": 100
+      }
+    },
+    "example": {
+      "steps": 3,
+      "up": 1.1,
+      "down": 0.9,
+      "rate": 0.02,
+      "strike": 100
+    }
+  },
+  {
+    "name": "bond_price_yield",
+    "domain": "finance",
+    "description": "Bond price against yield (inverse, convex); or duration tangent vs convexity parabola vs the real curve.",
+    "params": {
+      "view": {
+        "type": "string",
+        "required": false,
+        "description": "price curve, or duration and convexity",
+        "default": "price_yield",
+        "choices": [
+          "price_yield",
+          "duration_convexity"
+        ]
+      },
+      "coupon": {
+        "type": "number",
+        "required": false,
+        "description": "coupon in percent, 0.5 to 12",
+        "default": 5
+      },
+      "maturity": {
+        "type": "integer",
+        "required": false,
+        "description": "years to maturity, 1 to 30",
+        "default": 10
+      },
+      "yield_pct": {
+        "type": "number",
+        "required": false,
+        "description": "starting yield in percent, 2 to 10",
+        "default": 5
+      }
+    },
+    "example": {
+      "view": "duration_convexity",
+      "coupon": 5,
+      "maturity": 10,
+      "yield_pct": 5
+    }
+  },
+  {
+    "name": "brownian_motion",
+    "domain": "finance",
+    "description": "Random walk, Brownian motion or geometric Brownian motion (prices): many paths, and the histogram of where they end.",
+    "params": {
+      "variant": {
+        "type": "string",
+        "required": false,
+        "description": "random_walk, brownian or gbm (price model)",
+        "default": "brownian",
+        "choices": [
+          "random_walk",
+          "brownian",
+          "gbm"
+        ]
+      },
+      "paths": {
+        "type": "integer",
+        "required": false,
+        "description": "paths drawn, 3 to 16",
+        "default": 8
+      },
+      "volatility": {
+        "type": "number",
+        "required": false,
+        "description": "yearly volatility, 0.02 to 1",
+        "default": 0.2
+      },
+      "drift": {
+        "type": "number",
+        "required": false,
+        "description": "yearly drift, -0.5 to 0.5",
+        "default": 0.05
+      }
+    },
+    "example": {
+      "variant": "gbm",
+      "paths": 8,
+      "volatility": 0.2,
+      "drift": 0.05
+    }
+  },
+  {
+    "name": "garch_volatility",
+    "domain": "finance",
+    "description": "Volatility clustering: returns over a band that widens after big moves (GARCH), or how volatility fades after one shock.",
+    "params": {
+      "view": {
+        "type": "string",
+        "required": false,
+        "description": "bands over returns, or decay after one shock",
+        "default": "bands",
+        "choices": [
+          "bands",
+          "shock"
+        ]
+      },
+      "alpha": {
+        "type": "number",
+        "required": false,
+        "description": "reaction to the last move, 0.01 to 0.3",
+        "default": 0.1
+      },
+      "beta": {
+        "type": "number",
+        "required": false,
+        "description": "memory of past volatility, 0.3 to 0.97",
+        "default": 0.85
+      },
+      "shock_at": {
+        "type": "integer",
+        "required": false,
+        "description": "day of the big move (bands view), 5 to 80",
+        "default": 30
+      }
+    },
+    "example": {
+      "view": "bands",
+      "alpha": 0.1,
+      "beta": 0.85,
+      "shock_at": 30
+    }
+  },
+  {
+    "name": "is_lm_ad_as",
+    "domain": "finance",
+    "description": "IS-LM and AD-AS side by side, linked: one policy or supply shock moves both diagrams.",
+    "params": {
+      "policy": {
+        "type": "string",
+        "required": false,
+        "description": "which change",
+        "default": "monetary_expansion",
+        "choices": [
+          "monetary_expansion",
+          "monetary_contraction",
+          "fiscal_expansion",
+          "fiscal_contraction",
+          "adverse_supply_shock",
+          "positive_supply_shock"
+        ]
+      }
+    },
+    "example": {
+      "policy": "monetary_expansion"
+    },
+    "plugin": {
+      "name": "manim-extensions",
+      "url": "https://github.com/ExploreMaths/manim_extensions",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "is_lm_model",
+    "domain": "finance",
+    "description": "IS-LM diagram: a monetary or fiscal policy change shifts one curve and moves interest rate and output.",
+    "params": {
+      "policy": {
+        "type": "string",
+        "required": false,
+        "description": "which policy",
+        "default": "monetary_expansion",
+        "choices": [
+          "monetary_expansion",
+          "monetary_contraction",
+          "fiscal_expansion",
+          "fiscal_contraction"
+        ]
+      }
+    },
+    "example": {
+      "policy": "monetary_expansion"
+    },
+    "plugin": {
+      "name": "manim-extensions",
+      "url": "https://github.com/ExploreMaths/manim_extensions",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "option_greeks",
+    "domain": "finance",
+    "description": "Option value curve sharpening toward its payoff as time runs out, with delta tangent and a Greek (delta, gamma, theta, vega) beside it.",
+    "params": {
+      "greek": {
+        "type": "string",
+        "required": false,
+        "description": "which Greek to profile",
+        "default": "delta",
+        "choices": [
+          "delta",
+          "gamma",
+          "theta",
+          "vega"
+        ]
+      },
+      "option_type": {
+        "type": "string",
+        "required": false,
+        "description": "call or put",
+        "default": "call",
+        "choices": [
+          "call",
+          "put"
+        ]
+      },
+      "strike": {
+        "type": "number",
+        "required": false,
+        "description": "strike price",
+        "default": 100
+      },
+      "volatility": {
+        "type": "number",
+        "required": false,
+        "description": "yearly volatility, 0.05 to 1",
+        "default": 0.25
+      }
+    },
+    "example": {
+      "greek": "gamma",
+      "option_type": "call",
+      "strike": 100,
+      "volatility": 0.25
+    }
+  },
+  {
+    "name": "option_payoff",
+    "domain": "finance",
+    "description": "Option profit or loss at expiry as a hockey stick with break-even and max gain/loss; also straddle, bull spread, collar.",
+    "params": {
+      "kind": {
+        "type": "string",
+        "required": false,
+        "description": "call or put",
+        "default": "call",
+        "choices": [
+          "call",
+          "put"
+        ]
+      },
+      "strategy": {
+        "type": "string",
+        "required": false,
+        "description": "position shape",
+        "default": "single",
+        "choices": [
+          "single",
+          "straddle",
+          "bull_spread",
+          "collar"
+        ]
+      },
+      "strike": {
+        "type": "number",
+        "required": false,
+        "description": "strike price",
+        "default": 100
+      },
+      "premium": {
+        "type": "number",
+        "required": false,
+        "description": "price paid per share",
+        "default": 5
+      },
+      "side": {
+        "type": "string",
+        "required": false,
+        "description": "long (buy) or short (sell)",
+        "default": "long",
+        "choices": [
+          "long",
+          "short"
+        ]
+      }
+    },
+    "example": {
+      "kind": "call",
+      "strategy": "single",
+      "strike": 100,
+      "premium": 5,
+      "side": "long"
+    }
+  },
+  {
+    "name": "order_book_matching",
+    "domain": "finance",
+    "description": "Limit order book with bids, asks and spread: a buy order sweeps price levels, partly fills, or joins the queue (price-time priority).",
+    "params": {
+      "scenario": {
+        "type": "string",
+        "required": false,
+        "description": "what the incoming order does",
+        "default": "market_buy",
+        "choices": [
+          "market_buy",
+          "partial_fill",
+          "limit_joins_queue"
+        ]
+      },
+      "depth": {
+        "type": "integer",
+        "required": false,
+        "description": "price levels per side, 3 to 5",
+        "default": 4
+      }
+    },
+    "example": {
+      "scenario": "partial_fill",
+      "depth": 4
+    }
+  },
+  {
+    "name": "solow_growth",
+    "domain": "finance",
+    "description": "Solow growth model: change savings, population growth or depreciation and watch the steady state move.",
+    "params": {
+      "change": {
+        "type": "string",
+        "required": false,
+        "description": "what changes",
+        "default": "increase_savings",
+        "choices": [
+          "increase_savings",
+          "decrease_savings",
+          "population_growth",
+          "increase_depreciation"
+        ]
+      }
+    },
+    "example": {
+      "change": "increase_savings"
+    },
+    "plugin": {
+      "name": "manim-extensions",
+      "url": "https://github.com/ExploreMaths/manim_extensions",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "supply_demand",
+    "domain": "finance",
+    "description": "Supply and demand curves; one curve shifts and the equilibrium price and quantity move.",
+    "params": {
+      "event": {
+        "type": "string",
+        "required": false,
+        "description": "what happens",
+        "default": "demand_increase",
+        "choices": [
+          "demand_increase",
+          "demand_decrease",
+          "supply_increase",
+          "supply_decrease"
+        ]
+      },
+      "size": {
+        "type": "number",
+        "required": false,
+        "description": "how far the curve shifts, 1 to 3",
+        "default": 2
+      }
+    },
+    "example": {
+      "event": "demand_increase",
+      "size": 2
+    },
+    "plugin": {
+      "name": "manim-extensions",
+      "url": "https://github.com/ExploreMaths/manim_extensions",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "yield_curve_shift",
+    "domain": "finance",
+    "description": "Yield curve (3M to 30Y) morphing under a parallel shift, steepening, flattening or inversion, with what it means.",
+    "params": {
+      "shift": {
+        "type": "string",
+        "required": false,
+        "description": "how the curve moves",
+        "default": "steepen",
+        "choices": [
+          "parallel_up",
+          "parallel_down",
+          "steepen",
+          "flatten",
+          "invert"
+        ]
+      },
+      "size_bps": {
+        "type": "number",
+        "required": false,
+        "description": "size in basis points, 10 to 250",
+        "default": 100
+      }
+    },
+    "example": {
+      "shift": "invert",
+      "size_bps": 100
+    }
+  },
+  {
+    "name": "code_walkthrough",
+    "domain": "learn",
+    "description": "Shows up to 8 lines of code and highlights them one at a time with a short note per line. Use to explain code or an algorithm line by line. For longer code use several scenes with first_line set so numbering continues; narration should mention the lines in order.",
+    "params": {
+      "lines": {
+        "type": "string[]",
+        "required": true,
+        "description": "1-8 lines of code, indentation with spaces, each under 60 characters"
+      },
+      "notes": {
+        "type": "string[]",
+        "required": true,
+        "description": "One short plain-words note per line, same order and same count as lines (under 70 chars each)"
+      },
+      "language": {
+        "type": "string",
+        "required": false,
+        "description": "Language name shown as a label",
+        "default": "python"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Heading, e.g. 'Binary search'",
+        "default": ""
+      },
+      "first_line": {
+        "type": "integer",
+        "required": false,
+        "description": "Number of the first line shown, so long code can be split across scenes",
+        "default": 1
+      }
+    },
+    "example": {
+      "lines": [
+        "def total(xs):",
+        "    s = 0",
+        "    for x in xs:",
+        "        s += x",
+        "    return s"
+      ],
+      "notes": [
+        "Define a function taking a list",
+        "Start the running sum at zero",
+        "Visit each item in turn",
+        "Add the item to the sum",
+        "Give the sum back"
+      ],
+      "language": "python",
+      "title": "Summing a list",
+      "first_line": 1
+    }
+  },
+  {
+    "name": "problem_statement",
+    "domain": "learn",
+    "description": "A numerical problem laid out as what is Given and what to Find. Use right after the title in a worked-problem video.",
+    "params": {
+      "given": {
+        "type": "string[]",
+        "required": true,
+        "description": "2-6 given values, short, e.g. 'Supply frequency f = 50 Hz'"
+      },
+      "find": {
+        "type": "string",
+        "required": true,
+        "description": "What must be found, e.g. 'Synchronous speed N_s'"
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Heading",
+        "default": "Problem"
+      }
+    },
+    "example": {
+      "given": [
+        "Supply frequency f = 50 Hz",
+        "Number of poles P = 4"
+      ],
+      "find": "Synchronous speed N_s",
+      "title": "Problem"
+    }
+  },
+  {
+    "name": "solution_steps",
+    "domain": "learn",
+    "description": "A worked solution: 2-5 steps (6 at most), each with a name, one formula line and a short note, then a boxed final answer. Use after problem_statement. Put one calculation per step (formula, substitution, result).",
+    "params": {
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Heading",
+        "default": "Solution"
+      },
+      "steps": {
+        "type": "object[]",
+        "required": true,
+        "description": "2-5 steps in order",
+        "items": "{label: step name under 25 chars, math: ONE LaTeX line without $, note: under 60 chars of plain words}"
+      },
+      "answer": {
+        "type": "string",
+        "required": false,
+        "description": "Final answer with its unit, e.g. 'N_s = 1500 rpm'. Leave empty to skip the answer box.",
+        "default": ""
+      }
+    },
+    "example": {
+      "title": "Solution",
+      "steps": [
+        {
+          "label": "Write the formula",
+          "math": "N_s = \\frac{120 f}{P}",
+          "note": "Speed set by frequency and poles"
+        },
+        {
+          "label": "Substitute",
+          "math": "N_s = \\frac{120 \\times 50}{4}",
+          "note": "f = 50 Hz, P = 4"
+        },
+        {
+          "label": "Calculate",
+          "math": "N_s = 1500",
+          "note": "Units are rpm"
+        }
+      ],
+      "answer": "N_s = 1500 rpm"
+    }
+  },
+  {
+    "name": "trace_table",
+    "domain": "learn",
+    "description": "A dry-run table that fills in one row per step, to follow how variables change while an algorithm or process runs.",
+    "params": {
+      "columns": {
+        "type": "string[]",
+        "required": true,
+        "description": "2-6 column headings, e.g. variable names"
+      },
+      "rows": {
+        "type": "string[]",
+        "required": true,
+        "description": "Up to 8 rows, cells separated by '|', e.g. 'lo=0 | hi=6 | mid=3'. Same cell count as columns."
+      },
+      "title": {
+        "type": "string",
+        "required": false,
+        "description": "Heading",
+        "default": "Dry run"
+      }
+    },
+    "example": {
+      "columns": [
+        "step",
+        "lo",
+        "hi",
+        "mid"
+      ],
+      "rows": [
+        "1 | 0 | 6 | 3",
+        "2 | 4 | 6 | 5",
+        "3 | 4 | 4 | 4"
+      ],
+      "title": "Tracing the search"
+    }
+  },
+  {
+    "name": "attention_head",
+    "domain": "machine-learning",
+    "description": "One self-attention head: project each word into a query, key and value, score every pair, then mix the values by the scores. With several heads it shows the split into parallel heads and the concatenation back.",
+    "params": {
+      "tokens": {
+        "type": "string[]",
+        "required": false,
+        "description": "the sentence as tokens (words or sub-words, 2 to 8, each a short string)",
+        "default": [
+          "The",
+          "cat",
+          "sat",
+          "on",
+          "mat"
+        ]
+      },
+      "causal": {
+        "type": "boolean",
+        "required": false,
+        "description": "hide future words, as a language model does while generating",
+        "default": true
+      },
+      "heads": {
+        "type": "integer",
+        "required": false,
+        "description": "1 shows a single head in three stages; 2 to 4 shows several heads side by side",
+        "default": 1
+      }
+    },
+    "example": {
+      "tokens": [
+        "The",
+        "cat",
+        "sat",
+        "on",
+        "mat"
+      ],
+      "causal": true,
+      "heads": 1
+    }
+  },
+  {
+    "name": "attention_heatmap",
+    "domain": "machine-learning",
+    "description": "Attention as a grid of who looks at whom: raw scores, scaling, the causal mask, then softmax turning each row into shares that add to one. Optionally with arcs from one word to the words it attends to.",
+    "params": {
+      "tokens": {
+        "type": "string[]",
+        "required": false,
+        "description": "the sentence as tokens (words or sub-words, 2 to 8, each a short string)",
+        "default": [
+          "The",
+          "cat",
+          "sat",
+          "on",
+          "mat"
+        ]
+      },
+      "causal": {
+        "type": "boolean",
+        "required": false,
+        "description": "mask out future words",
+        "default": true
+      },
+      "view": {
+        "type": "string",
+        "required": false,
+        "description": "which picture",
+        "default": "both",
+        "choices": [
+          "heatmap",
+          "arcs",
+          "both"
+        ]
+      },
+      "query_index": {
+        "type": "integer",
+        "required": false,
+        "description": "which word the arcs start from, counting from 0; -1 means the last word",
+        "default": -1
+      }
+    },
+    "example": {
+      "tokens": [
+        "The",
+        "cat",
+        "sat",
+        "down"
+      ],
+      "causal": true,
+      "view": "both",
+      "query_index": -1
+    }
+  },
+  {
+    "name": "kv_cache",
+    "domain": "machine-learning",
+    "description": "The KV cache in LLM decoding: each new token writes its key and value into a slot (a sliding window overwrites the oldest), or a timeline comparing the work with and without the cache.",
+    "params": {
+      "view": {
+        "type": "string",
+        "required": false,
+        "description": "slots filling up, or the work saved",
+        "default": "cache",
+        "choices": [
+          "cache",
+          "timeline"
+        ]
+      },
+      "steps": {
+        "type": "integer",
+        "required": false,
+        "description": "tokens generated, 3 to 12",
+        "default": 8
+      },
+      "window": {
+        "type": "integer",
+        "required": false,
+        "description": "sliding-window size; 0 keeps every token",
+        "default": 0
+      }
+    },
+    "example": {
+      "view": "cache",
+      "steps": 8,
+      "window": 4
+    }
+  },
+  {
+    "name": "neural_network",
+    "domain": "machine-learning",
+    "description": "Feed-forward neural network, layer by layer, with an optional forward pass.",
+    "params": {
+      "layers": {
+        "type": "number[]",
+        "required": false,
+        "description": "neurons per layer, 2-6 layers of 1-8, e.g. [3, 5, 4, 2]"
+      },
+      "forward_pass": {
+        "type": "boolean",
+        "required": false,
+        "description": "animate data flowing through",
+        "default": true
+      }
+    },
+    "example": {
+      "layers": [
+        3,
+        5,
+        4,
+        2
+      ],
+      "forward_pass": true
+    },
+    "plugin": {
+      "name": "ManimML",
+      "url": "https://github.com/helblazer811/ManimML",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "positional_encoding",
+    "domain": "machine-learning",
+    "description": "Positional encoding in a transformer: sine and cosine waves of different speeds giving every position a unique pattern, how that pattern is added to a word's embedding, or the whole table seen from above as a heatmap.",
+    "params": {
+      "view": {
+        "type": "string",
+        "required": false,
+        "description": "which picture",
+        "default": "waves",
+        "choices": [
+          "waves",
+          "sum",
+          "heatmap"
+        ]
+      },
+      "tokens": {
+        "type": "string[]",
+        "required": false,
+        "description": "the words for the sum view (words or sub-words, 2 to 8, each a short string)",
+        "default": [
+          "The",
+          "cat",
+          "sat",
+          "on",
+          "mat"
+        ]
+      },
+      "d_model": {
+        "type": "integer",
+        "required": false,
+        "description": "embedding size, an even number from 4 to 16",
+        "default": 8
+      },
+      "n_positions": {
+        "type": "integer",
+        "required": false,
+        "description": "how many positions to draw, 4 to 24",
+        "default": 12
+      }
+    },
+    "example": {
+      "view": "waves",
+      "tokens": [
+        "The",
+        "cat",
+        "sat",
+        "on",
+        "mat"
+      ],
+      "d_model": 8,
+      "n_positions": 12
+    }
+  },
+  {
+    "name": "qkv_projection",
+    "domain": "machine-learning",
+    "description": "Query, key and value: the same word embedding multiplied by three weight matrices, lighting up each word's row in Q, K and V.",
+    "params": {
+      "tokens": {
+        "type": "string[]",
+        "required": false,
+        "description": "the sentence as tokens (words or sub-words, 2 to 8, each a short string)",
+        "default": [
+          "The",
+          "cat",
+          "sat",
+          "on"
+        ]
+      },
+      "d_head": {
+        "type": "integer",
+        "required": false,
+        "description": "size of each query, key and value vector, 2 to 4",
+        "default": 3
+      }
+    },
+    "example": {
+      "tokens": [
+        "I",
+        "love",
+        "maths"
+      ],
+      "d_head": 3
+    }
+  },
+  {
+    "name": "branch_prediction",
+    "domain": "microelectronics",
+    "description": "Branch prediction: the predicted path versus the real one, the flush penalty on a miss, and the saturating-counter state machine.",
+    "params": {
+      "predictor": {
+        "type": "string",
+        "required": false,
+        "description": "predictor type",
+        "default": "2bit",
+        "choices": [
+          "static",
+          "1bit",
+          "2bit"
+        ]
+      },
+      "outcomes": {
+        "type": "number[]",
+        "required": false,
+        "description": "branch outcomes in order, 1 = taken, 0 = not taken (up to 8)",
+        "default": [
+          1,
+          1,
+          0,
+          1,
+          1,
+          0
+        ]
+      }
+    },
+    "example": {
+      "predictor": "2bit",
+      "outcomes": [
+        1,
+        1,
+        0,
+        1
+      ]
+    }
+  },
+  {
+    "name": "cache_access",
+    "domain": "microelectronics",
+    "description": "Set-associative cache: each address is split into tag, index and offset, the set is searched, and the access hits or replaces a line (LRU or FIFO).",
+    "params": {
+      "addresses": {
+        "type": "number[]",
+        "required": false,
+        "description": "byte addresses 0-255 to look up in order (up to 8)",
+        "default": [
+          0,
+          4,
+          0,
+          32,
+          64,
+          0,
+          4
+        ]
+      },
+      "sets": {
+        "type": "integer",
+        "required": false,
+        "description": "number of sets (1, 2, 4 or 8)",
+        "default": 4
+      },
+      "ways": {
+        "type": "integer",
+        "required": false,
+        "description": "ways per set, 1 to 4",
+        "default": 2
+      },
+      "policy": {
+        "type": "string",
+        "required": false,
+        "description": "replacement policy",
+        "default": "lru",
+        "choices": [
+          "lru",
+          "fifo"
+        ]
+      }
+    },
+    "example": {
+      "addresses": [
+        0,
+        4,
+        0,
+        32,
+        64
+      ],
+      "sets": 4,
+      "ways": 2,
+      "policy": "lru"
+    }
+  },
+  {
+    "name": "cpu_pipeline",
+    "domain": "microelectronics",
+    "description": "5-stage CPU pipeline (IF ID EX MEM WB) as a cycle-by-cycle grid: stall bubbles labelled with their cause, forwarding arrows, and branch flushes.",
+    "params": {
+      "program": {
+        "type": "string",
+        "required": false,
+        "description": "instruction sequence",
+        "default": "raw_hazard",
+        "choices": [
+          "raw_hazard",
+          "load_use",
+          "independent",
+          "branch"
+        ]
+      },
+      "forwarding": {
+        "type": "boolean",
+        "required": false,
+        "description": "forward results between stages instead of stalling",
+        "default": true
+      },
+      "branch_policy": {
+        "type": "string",
+        "required": false,
+        "description": "how branches are handled",
+        "default": "stall",
+        "choices": [
+          "stall",
+          "predict_not_taken",
+          "predict_taken"
+        ]
+      }
+    },
+    "example": {
+      "program": "raw_hazard",
+      "forwarding": false,
+      "branch_policy": "stall"
+    }
+  },
+  {
+    "name": "memory_system",
+    "domain": "microelectronics",
+    "description": "Memory system: the cache hierarchy with latencies and average access time, the address and data buses with RAM row/column selection, or DMA moving a block while the CPU stays free.",
+    "params": {
+      "view": {
+        "type": "string",
+        "required": false,
+        "description": "which picture",
+        "default": "hierarchy",
+        "choices": [
+          "hierarchy",
+          "bus",
+          "dma"
+        ]
+      },
+      "levels": {
+        "type": "integer",
+        "required": false,
+        "description": "cache levels in the hierarchy view, 1 to 3",
+        "default": 3
+      },
+      "words": {
+        "type": "integer",
+        "required": false,
+        "description": "words moved in the dma view, 1 to 8",
+        "default": 8
+      }
+    },
+    "example": {
+      "view": "hierarchy",
+      "levels": 3,
+      "words": 8
+    }
+  },
+  {
+    "name": "mosfet_channel",
+    "domain": "microelectronics",
+    "description": "MOSFET cross-section: the inversion channel forms as VGS passes the threshold and pinches off as VDS rises, with the drain current. Views: cross-section, or the I_D-V_DS characteristics.",
+    "params": {
+      "kind": {
+        "type": "string",
+        "required": false,
+        "description": "transistor type (voltages are magnitudes for pmos)",
+        "default": "nmos",
+        "choices": [
+          "nmos",
+          "pmos"
+        ]
+      },
+      "vgs": {
+        "type": "number",
+        "required": false,
+        "description": "starting gate-source voltage in volts",
+        "default": 0.0
+      },
+      "vds": {
+        "type": "number",
+        "required": false,
+        "description": "starting drain-source voltage in volts",
+        "default": 0.0
+      },
+      "view": {
+        "type": "string",
+        "required": false,
+        "description": "which picture",
+        "default": "cross_section",
+        "choices": [
+          "cross_section",
+          "characteristics"
+        ]
+      }
+    },
+    "example": {
+      "kind": "nmos",
+      "vgs": 0.0,
+      "vds": 0.0,
+      "view": "cross_section"
+    }
+  },
+  {
+    "name": "pn_junction",
+    "domain": "microelectronics",
+    "description": "PN junction: electrons and holes diffusing across the junction, a depletion region that widens in reverse bias and narrows in forward bias. Views: carriers, band diagram, I-V curve.",
+    "params": {
+      "bias_v": {
+        "type": "number",
+        "required": false,
+        "description": "bias voltage in volts, -1 (reverse) to 0.65 (forward)",
+        "default": 0.0
+      },
+      "view": {
+        "type": "string",
+        "required": false,
+        "description": "which picture",
+        "default": "carriers",
+        "choices": [
+          "carriers",
+          "bands",
+          "iv"
+        ]
+      }
+    },
+    "example": {
+      "bias_v": 0.0,
+      "view": "carriers"
+    }
+  },
+  {
+    "name": "serial_bus",
+    "domain": "microelectronics",
+    "description": "Serial bus waveforms with the sampling instants and frame fields: SPI (all four modes), I2C, UART, USB (NRZI and bit stuffing), CAN (with arbitration), and a differential pair that cancels noise.",
+    "params": {
+      "variant": {
+        "type": "string",
+        "required": false,
+        "description": "protocol",
+        "default": "spi",
+        "choices": [
+          "spi",
+          "i2c",
+          "uart",
+          "usb",
+          "can",
+          "diff"
+        ]
+      },
+      "data": {
+        "type": "number[]",
+        "required": false,
+        "description": "bytes to send, 0-255 (at most 2)",
+        "default": [
+          165
+        ]
+      },
+      "mode": {
+        "type": "integer",
+        "required": false,
+        "description": "SPI mode 0-3 (CPOL, CPHA); for UART 0 = no parity, 1 = even, 2 = odd",
+        "default": 0
+      }
+    },
+    "example": {
+      "variant": "spi",
+      "data": [
+        165
+      ],
+      "mode": 0
+    }
+  },
+  {
+    "name": "electric_field",
+    "domain": "physics",
+    "description": "Field arrows around 1-4 point charges.",
+    "params": {
+      "charges": {
+        "type": "number[]",
+        "required": false,
+        "description": "signed strengths, 1-4 values in -3..3, e.g. [1, -1]"
+      }
+    },
+    "example": {
+      "charges": [
+        2,
+        -1
+      ]
+    },
+    "plugin": {
+      "name": "manim-physics",
+      "url": "https://github.com/Matheart/manim-physics",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "falling_objects",
+    "domain": "physics",
+    "description": "Shapes dropped under gravity, bouncing off floor and walls.",
+    "params": {
+      "objects": {
+        "type": "integer",
+        "required": false,
+        "description": "shapes, 1-5",
+        "default": 3
+      },
+      "bounciness": {
+        "type": "number",
+        "required": false,
+        "description": "0 (dead) to 0.95 (very bouncy)",
+        "default": 0.7
+      }
+    },
+    "example": {
+      "objects": 3,
+      "bounciness": 0.7
+    },
+    "plugin": {
+      "name": "manim-physics",
+      "url": "https://github.com/Matheart/manim-physics",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "gear_train",
+    "domain": "physics",
+    "description": "Two meshing gears; the tooth counts set the speed and torque ratio.",
+    "params": {
+      "driver_teeth": {
+        "type": "integer",
+        "required": false,
+        "description": "teeth on the driving gear, 8 to 40",
+        "default": 15
+      },
+      "driven_teeth": {
+        "type": "integer",
+        "required": false,
+        "description": "teeth on the driven gear, 8 to 60",
+        "default": 25
+      }
+    },
+    "example": {
+      "driver_teeth": 15,
+      "driven_teeth": 25
+    },
+    "plugin": {
+      "name": "manim-extensions",
+      "url": "https://github.com/ExploreMaths/manim_extensions",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "lens_rays",
+    "domain": "physics",
+    "description": "Parallel rays through a convex or concave lens.",
+    "params": {
+      "kind": {
+        "type": "string",
+        "required": false,
+        "description": "lens type",
+        "default": "converging",
+        "choices": [
+          "converging",
+          "diverging"
+        ]
+      },
+      "rays": {
+        "type": "integer",
+        "required": false,
+        "description": "rays, 3-9",
+        "default": 5
+      }
+    },
+    "example": {
+      "kind": "converging",
+      "rays": 5
+    },
+    "plugin": {
+      "name": "manim-physics",
+      "url": "https://github.com/Matheart/manim-physics",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "pendulum",
+    "domain": "physics",
+    "description": "Simulated pendulum; 2-3 bobs are chaotic with a traced path.",
+    "params": {
+      "bobs": {
+        "type": "integer",
+        "required": false,
+        "description": "number of bobs",
+        "default": 1,
+        "choices": [
+          1,
+          2,
+          3
+        ]
+      },
+      "length": {
+        "type": "number",
+        "required": false,
+        "description": "length in metres, 1-3.4",
+        "default": 3.0
+      },
+      "angle_degrees": {
+        "type": "number",
+        "required": false,
+        "description": "start angle in degrees, 5-90",
+        "default": 35
+      }
+    },
+    "example": {
+      "bobs": 1,
+      "length": 3.0,
+      "angle_degrees": 35
+    },
+    "plugin": {
+      "name": "manim-physics",
+      "url": "https://github.com/Matheart/manim-physics",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "standing_wave",
+    "domain": "physics",
+    "description": "Animated standing waves for chosen harmonics.",
+    "params": {
+      "harmonics": {
+        "type": "number[]",
+        "required": false,
+        "description": "1-4 numbers from 1-6, e.g. [1, 2, 3]"
+      }
+    },
+    "example": {
+      "harmonics": [
+        1,
+        2,
+        3
+      ]
+    },
+    "plugin": {
+      "name": "manim-physics",
+      "url": "https://github.com/Matheart/manim-physics",
+      "license": "MIT"
+    }
+  },
+  {
+    "name": "damper_windings",
+    "domain": "power-systems",
+    "description": "Damper (amortisseur) windings in a synchronous machine's rotor: how slip makes bars cut flux and the induced current pulls the rotor back in step.",
+    "params": {
+      "poles": {
+        "type": "integer",
+        "required": false,
+        "description": "number of poles, an even number from 2 to 8",
+        "default": 4
+      },
+      "slip": {
+        "type": "number",
+        "required": false,
+        "description": "starting slip, 0 to 0.5",
+        "default": 0.05
+      }
+    },
+    "example": {
+      "poles": 4,
+      "slip": 0.05
+    }
+  },
+  {
+    "name": "dc_dc_converter",
+    "domain": "power-systems",
+    "description": "DC-DC converter (buck, boost, buck-boost): the switching schematic, the inductor current ramping up and down, and the output-to-input ratio curve as the duty cycle changes.",
+    "params": {
+      "topology": {
+        "type": "string",
+        "required": false,
+        "description": "converter type",
+        "default": "buck",
+        "choices": [
+          "buck",
+          "boost",
+          "buck_boost"
+        ]
+      },
+      "vin": {
+        "type": "number",
+        "required": false,
+        "description": "input voltage in volts, 1 to 1000",
+        "default": 12
+      },
+      "duty": {
+        "type": "number",
+        "required": false,
+        "description": "fraction of each period the switch is on, 0.1 to 0.9",
+        "default": 0.5
+      },
+      "view": {
+        "type": "string",
+        "required": false,
+        "description": "which pictures",
+        "default": "both",
+        "choices": [
+          "schematic",
+          "waveforms",
+          "both"
+        ]
+      }
+    },
+    "example": {
+      "topology": "buck",
+      "vin": 12,
+      "duty": 0.4,
+      "view": "both"
+    }
+  },
+  {
+    "name": "foc_transform",
+    "domain": "power-systems",
+    "description": "Field-oriented (vector) motor control: Clarke and Park transforms turning three sine currents into flat d and q values, the rotating d-q frame, torque from the q-axis current, or the full control block diagram.",
+    "params": {
+      "view": {
+        "type": "string",
+        "required": false,
+        "description": "which picture",
+        "default": "clarke_park",
+        "choices": [
+          "clarke_park",
+          "dq_frame",
+          "torque",
+          "block_diagram"
+        ]
+      },
+      "frequency_hz": {
+        "type": "number",
+        "required": false,
+        "description": "electrical frequency in Hz, 1 to 400",
+        "default": 50
+      }
+    },
+    "example": {
+      "view": "clarke_park",
+      "frequency_hz": 50
+    }
+  },
+  {
+    "name": "power_grid",
+    "domain": "power-systems",
+    "description": "An electrical grid: generator, buses, lines and loads with power-flow arrows and a fault that breakers isolate, or substation bus layouts (single bus, double bus, breaker ring) with the route the current takes.",
+    "params": {
+      "layout": {
+        "type": "string",
+        "required": false,
+        "description": "grid or substation layout",
+        "default": "radial",
+        "choices": [
+          "radial",
+          "ring",
+          "single_bus",
+          "double_bus",
+          "ring_bus"
+        ]
+      },
+      "loads": {
+        "type": "integer",
+        "required": false,
+        "description": "loads or feeders, 1 to 4",
+        "default": 3
+      },
+      "show_fault": {
+        "type": "boolean",
+        "required": false,
+        "description": "show a fault and the breakers clearing it",
+        "default": true
+      }
+    },
+    "example": {
+      "layout": "radial",
+      "loads": 3,
+      "show_fault": true
+    }
+  },
+  {
+    "name": "power_stability",
+    "domain": "power-systems",
+    "description": "Power-system stability: the rotor angle swinging after a disturbance, the equal-area criterion for a fault cleared at a chosen angle, or a generator's short-circuit current decaying from subtransient to steady state.",
+    "params": {
+      "view": {
+        "type": "string",
+        "required": false,
+        "description": "which picture",
+        "default": "swing",
+        "choices": [
+          "swing",
+          "equal_area",
+          "fault_current"
+        ]
+      },
+      "inertia_h": {
+        "type": "number",
+        "required": false,
+        "description": "inertia constant H in seconds, 1 to 12 (swing view)",
+        "default": 5
+      },
+      "mechanical_power": {
+        "type": "number",
+        "required": false,
+        "description": "mechanical power in per unit, 0.1 to 1.2",
+        "default": 0.8
+      },
+      "clearing_angle_deg": {
+        "type": "number",
+        "required": false,
+        "description": "angle at which the fault is cleared, 20 to 80 degrees (equal_area view)",
+        "default": 52
+      },
+      "dc_offset": {
+        "type": "boolean",
+        "required": false,
+        "description": "include the decaying DC offset (fault_current view)",
+        "default": true
+      }
+    },
+    "example": {
+      "view": "equal_area",
+      "inertia_h": 5,
+      "mechanical_power": 0.8,
+      "clearing_angle_deg": 52,
+      "dc_offset": true
+    }
+  },
+  {
+    "name": "pwm_inverter",
+    "domain": "power-systems",
+    "description": "Pulse-width modulation: a triangle carrier racing a sine reference to make switching pulses, driving a single-phase H-bridge (bipolar or unipolar) or a three-phase inverter.",
+    "params": {
+      "circuit": {
+        "type": "string",
+        "required": false,
+        "description": "what to show",
+        "default": "pwm",
+        "choices": [
+          "pwm",
+          "h_bridge",
+          "three_phase"
+        ]
+      },
+      "modulation": {
+        "type": "string",
+        "required": false,
+        "description": "H-bridge switching style (only for h_bridge)",
+        "default": "bipolar",
+        "choices": [
+          "bipolar",
+          "unipolar"
+        ]
+      },
+      "modulation_index": {
+        "type": "number",
+        "required": false,
+        "description": "reference amplitude over carrier amplitude, 0.1 to 1",
+        "default": 0.8
+      },
+      "carrier_ratio": {
+        "type": "integer",
+        "required": false,
+        "description": "carrier frequency over reference frequency, 9 to 31",
+        "default": 15
+      }
+    },
+    "example": {
+      "circuit": "three_phase",
+      "modulation": "bipolar",
+      "modulation_index": 0.9,
+      "carrier_ratio": 21
+    }
+  }
+]

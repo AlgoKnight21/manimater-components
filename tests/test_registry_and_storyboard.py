@@ -1,0 +1,108 @@
+import json
+from pathlib import Path
+
+import pytest
+
+from manimate import registry
+from manimate.catalog import build_catalog
+from manimate.components import load_all
+from manimate.safe_expr import compile_expr, validate_expr
+from manimate.storyboard import MAX_SCENES, validate
+
+load_all()
+EXAMPLES = Path(__file__).parent.parent / "examples"
+
+
+def sb(*scenes, title="t"):
+    return {"title": title, "scenes": [{"component": c, "params": p, "narration": "Short narration here."} for c, p in scenes]}
+
+
+def test_every_component_example_is_valid():
+    for entry in build_catalog():
+        comp = registry.get(entry["name"])
+        _, errs = registry.validate_params(comp, entry["example"])
+        assert not errs, (entry["name"], errs)
+
+
+def test_catalog_shape():
+    cat = build_catalog()
+    assert {"title_card", "synchronous_motor", "circuit"} <= {c["name"] for c in cat}
+    for c in cat:
+        assert c["description"] and "params" in c and "example" in c
+    json.dumps(cat)  # must be serialisable (the worker embeds it)
+
+
+def test_example_storyboard_valid():
+    out, errs = validate(json.loads((EXAMPLES / "synchronous_motor.json").read_text()))
+    assert not errs and out is not None
+
+
+def test_unknown_component_and_missing_param():
+    _, errs = validate(sb(("nope", {}), ("title_card", {})))
+    assert any("unknown component 'nope'" in e for e in errs)
+    assert any("missing required param 'title'" in e for e in errs)
+
+
+def test_defaults_applied_and_extras_dropped():
+    out, errs = validate(sb(("rotating_field", {"junk": 1})))
+    assert not errs
+    assert out.scenes[0].params == {"poles": 2, "frequency_hz": 50}
+
+
+def test_type_and_choice_errors():
+    _, errs = validate(sb(("rotating_field", {"poles": 3}), ("bullet_points", {"heading": "h", "points": "not a list"})))
+    assert any("one of" in e for e in errs)
+    assert any("must be a list" in e for e in errs)
+
+
+def test_integer_accepts_whole_float():
+    out, errs = validate(sb(("rotating_field", {"poles": 4.0})))
+    assert not errs and out.scenes[0].params["poles"] == 4
+
+
+def test_scene_limits():
+    _, errs = validate(sb(*[("callout", {"text": "x"})] * (MAX_SCENES + 1)))
+    assert errs
+    _, errs = validate({"title": "t", "scenes": []})
+    assert errs
+
+
+def test_total_duration_cap():
+    long = "word " * 70
+    raw = {"title": "t", "scenes": [{"component": "callout", "params": {"text": "x"}, "narration": long}] * 10}
+    _, errs = validate(raw)
+    assert any("too long" in e for e in errs)
+
+
+def test_safe_expr():
+    assert compile_expr("sin(x)^2 + 1")(0) == 1
+    assert compile_expr("y = 2*x")(3) == 6
+    assert compile_expr("log(x)")(-1) == 0.0  # domain errors are tamed
+    for bad in ["__import__('os')", "x.__class__", "open('f')", "lambda: 1", "sin(x, 2)", "a+1", "[1]"]:
+        assert validate_expr(bad), bad
+
+
+def test_bad_expression_fails_validation():
+    _, errs = validate(sb(("function_plot", {"expression": "__import__('os').system('x')"})))
+    assert errs
+
+
+def test_power_pack_registered():
+    names = {c["name"] for c in build_catalog()}
+    assert {"transformer", "power_triangle", "torque_speed_curve"} <= names
+
+
+def test_power_pack_param_ranges():
+    _, errs = validate(sb(("transformer", {"turns_ratio": 50})))
+    assert any("between 0.1 and 10" in e for e in errs)
+    _, errs = validate(sb(("power_triangle", {"real_power_kw": 4, "power_factor": 1.5})))
+    assert any("power_factor" in e for e in errs)
+    _, errs = validate(sb(("torque_speed_curve", {"motor": "stepper"})))
+    assert any("must be one of" in e for e in errs)
+    out, errs = validate(sb(("power_triangle", {"real_power_kw": 4})))
+    assert not errs and out.scenes[0].params["power_factor"] == 0.8
+
+
+def test_power_basics_example_valid():
+    out, errs = validate(json.loads((EXAMPLES / "power_basics.json").read_text()))
+    assert not errs and out is not None

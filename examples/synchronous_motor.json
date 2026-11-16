@@ -1,0 +1,59 @@
+{
+  "title": "How a synchronous motor works",
+  "scenes": [
+    {
+      "component": "title_card",
+      "params": {
+        "title": "How a Synchronous Motor Works",
+        "subtitle": "Rotating fields and locked rotors"
+      },
+      "narration": "A synchronous motor turns at exactly the speed of the supply, no matter the load. Let's see why."
+    },
+    {
+      "component": "ac_waveform",
+      "params": {
+        "phases": 3,
+        "frequency_hz": 50,
+        "title": "Three-phase supply"
+      },
+      "narration": "Three AC currents, each shifted by 120 degrees, feed the stator windings."
+    },
+    {
+      "component": "rotating_field",
+      "params": {
+        "poles": 2,
+        "frequency_hz": 50
+      },
+      "narration": "Together they create a magnetic field that rotates around the stator at synchronous speed."
+    },
+    {
+      "component": "equation",
+      "params": {
+        "latex": "N_s = \\frac{120\\,f}{P}",
+        "title": "Synchronous speed",
+        "terms": [
+          "N_s: speed in rpm",
+          "f: supply frequency in Hz",
+          "P: number of poles"
+        ]
+      },
+      "narration": "That speed depends only on the supply frequency and the number of poles."
+    },
+    {
+      "component": "synchronous_motor",
+      "params": {
+        "poles": 2,
+        "frequency_hz": 50
+      },
+      "narration": "The DC-excited rotor locks onto this field and follows it. More load only increases the angle between them, not the speed."
+    },
+    {
+      "component": "callout",
+      "params": {
+        "text": "A synchronous motor runs at exactly the speed of the rotating field.",
+        "kind": "takeaway"
+      },
+      "narration": "Constant speed regardless of load, as long as it stays in step."
+    }
+  ]
+}
