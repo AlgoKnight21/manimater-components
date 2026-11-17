@@ -37,6 +37,21 @@ Manimater turns a prompt into a narrated explainer video. This library is what m
 { "component": "synchronous_motor", "params": { "poles": 2, "frequency_hz": 50 } }
 ```
 
+<table>
+  <tr>
+    <td width="33%" align="center"><img src="assets/previews/synchronous_motor.gif" alt="synchronous motor component" width="100%"><br><sub><code>synchronous_motor</code><br>electrical</sub></td>
+    <td width="33%" align="center"><img src="assets/previews/cpu_pipeline.gif" alt="cpu pipeline component" width="100%"><br><sub><code>cpu_pipeline</code><br>microelectronics</sub></td>
+    <td width="33%" align="center"><img src="assets/previews/neural_network.gif" alt="neural network component" width="100%"><br><sub><code>neural_network</code><br>machine learning</sub></td>
+  </tr>
+  <tr>
+    <td width="33%" align="center"><img src="assets/previews/pid_response.gif" alt="pid response component" width="100%"><br><sub><code>pid_response</code><br>control systems</sub></td>
+    <td width="33%" align="center"><img src="assets/previews/binary_search_tree.gif" alt="binary search tree component" width="100%"><br><sub><code>binary_search_tree</code><br>computer science</sub></td>
+    <td width="33%" align="center"><img src="assets/previews/order_book_matching.gif" alt="order book matching component" width="100%"><br><sub><code>order_book_matching</code><br>finance</sub></td>
+  </tr>
+</table>
+
+<p align="center"><sub>Six of the components, rendered from their own <code>example</code> parameters with <code>python -m manimate.preview</code>.</sub></p>
+
 ## Why components
 
 - **No generated code.** An LLM (or you) only picks a component and fills in its parameters as JSON. `manimate.storyboard`
