@@ -39,14 +39,14 @@ Manimater turns a prompt into a narrated explainer video. This library is what m
 
 <table>
   <tr>
-    <td width="33%" align="center"><img src="assets/previews/synchronous_motor.gif" alt="synchronous motor component" width="100%"><br><sub><code>synchronous_motor</code><br>electrical</sub></td>
-    <td width="33%" align="center"><img src="assets/previews/cpu_pipeline.gif" alt="cpu pipeline component" width="100%"><br><sub><code>cpu_pipeline</code><br>microelectronics</sub></td>
-    <td width="33%" align="center"><img src="assets/previews/neural_network.gif" alt="neural network component" width="100%"><br><sub><code>neural_network</code><br>machine learning</sub></td>
+    <td width="33%" align="center"><img src="assets/gifs/synchronous_motor.gif" alt="synchronous motor component" width="100%"><br><sub><code>synchronous_motor</code><br>electrical</sub></td>
+    <td width="33%" align="center"><img src="assets/gifs/cpu_pipeline.gif" alt="cpu pipeline component" width="100%"><br><sub><code>cpu_pipeline</code><br>microelectronics</sub></td>
+    <td width="33%" align="center"><img src="assets/gifs/neural_network.gif" alt="neural network component" width="100%"><br><sub><code>neural_network</code><br>machine learning</sub></td>
   </tr>
   <tr>
-    <td width="33%" align="center"><img src="assets/previews/pid_response.gif" alt="pid response component" width="100%"><br><sub><code>pid_response</code><br>control systems</sub></td>
-    <td width="33%" align="center"><img src="assets/previews/binary_search_tree.gif" alt="binary search tree component" width="100%"><br><sub><code>binary_search_tree</code><br>computer science</sub></td>
-    <td width="33%" align="center"><img src="assets/previews/order_book_matching.gif" alt="order book matching component" width="100%"><br><sub><code>order_book_matching</code><br>finance</sub></td>
+    <td width="33%" align="center"><img src="assets/gifs/pid_response.gif" alt="pid response component" width="100%"><br><sub><code>pid_response</code><br>control systems</sub></td>
+    <td width="33%" align="center"><img src="assets/gifs/binary_search_tree.gif" alt="binary search tree component" width="100%"><br><sub><code>binary_search_tree</code><br>computer science</sub></td>
+    <td width="33%" align="center"><img src="assets/gifs/order_book_matching.gif" alt="order book matching component" width="100%"><br><sub><code>order_book_matching</code><br>finance</sub></td>
   </tr>
 </table>
 
