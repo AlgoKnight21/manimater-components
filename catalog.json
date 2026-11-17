@@ -609,6 +609,52 @@
     }
   },
   {
+    "name": "binary_heap",
+    "domain": "computer-science",
+    "description": "Visualize a min-heap or max-heap built by insertion, then remove the root using sift-down. Shows the heap tree and matching array with comparisons highlighted.",
+    "params": {
+      "values": {
+        "type": "number[]",
+        "required": false,
+        "description": "Numbers to insert in order (up to 8); duplicates and negatives are supported",
+        "default": [
+          10,
+          20,
+          15,
+          5,
+          8
+        ]
+      },
+      "extract_count": {
+        "type": "integer",
+        "required": false,
+        "description": "Number of roots to extract after insertion; values above heap size are clamped",
+        "default": 2
+      },
+      "kind": {
+        "type": "string",
+        "required": false,
+        "description": "Heap ordering",
+        "default": "min",
+        "choices": [
+          "min",
+          "max"
+        ]
+      }
+    },
+    "example": {
+      "values": [
+        10,
+        20,
+        15,
+        5,
+        8
+      ],
+      "extract_count": 2,
+      "kind": "min"
+    }
+  },
+  {
     "name": "binary_representation",
     "domain": "computer-science",
     "description": "Shows how a number from 0 to 255 is written in binary: eight bits with place values 128 to 1, deciding each bit by subtraction, then adding the lit places back up.",
