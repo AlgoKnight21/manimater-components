@@ -69,9 +69,13 @@ git clone https://github.com/bishnt/manimater-components && cd manimater-compone
 pip install -e ".[dev]"
 ./scripts/install_plugins.sh          # the community Manim packages some components wrap (optional)
 
-python -m manimate.preview --list     # every component
-python -m manimate.preview callout    # renders previews/callout.mp4 from the component's own example
+manimate-preview --list              # every component
+manimate-preview callout             # renders previews/callout.mp4 from the component's own example
+manimate-catalog > catalog.json      # export the component catalog
 ```
+
+The commands are installed by `pip install`. The module forms
+`python -m manimate.preview` and `python -m manimate.catalog` also work.
 
 Use it from Python:
 

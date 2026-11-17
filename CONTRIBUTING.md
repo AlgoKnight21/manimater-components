@@ -21,10 +21,13 @@ pip install -e ".[dev]"            # needs ffmpeg, Cairo and Pango for Manim
 
 cp manimate/components/community/_template.py manimate/components/community/my_component.py
 # edit it, then:
-python -m manimate.preview my_component        # watch it: previews/my_component.mp4
+manimate-preview my_component                 # watch it: previews/my_component.mp4
 python -m pytest                               # includes a dry run of every component
-python -m manimate.catalog > catalog.json      # regenerate the catalog (CI checks it)
+manimate-catalog > catalog.json                # regenerate the catalog (CI checks it)
 ```
+
+The short commands are installed by `pip install`. You can also use
+`python -m manimate.preview` and `python -m manimate.catalog`, including in CI.
 
 Then open a pull request. A good pull request answers five questions in its description (the template asks them):
 
