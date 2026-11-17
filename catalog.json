@@ -1358,6 +1358,101 @@
     }
   },
   {
+    "name": "sql_join",
+    "domain": "databases",
+    "description": "Visualize SQL JOINs with matching rows, unmatched records, and NULL values.",
+    "params": {
+      "join_type": {
+        "type": "string",
+        "required": false,
+        "description": "SQL join type",
+        "default": "full",
+        "choices": [
+          "inner",
+          "left",
+          "right",
+          "full"
+        ]
+      },
+      "left_rows": {
+        "type": "object[]",
+        "required": false,
+        "description": "Rows in the left table",
+        "default": [
+          {
+            "id": 1,
+            "name": "Alice"
+          },
+          {
+            "id": 2,
+            "name": "Bob"
+          },
+          {
+            "id": 3,
+            "name": "Carol"
+          }
+        ]
+      },
+      "right_rows": {
+        "type": "object[]",
+        "required": false,
+        "description": "Rows in the right table",
+        "default": [
+          {
+            "id": 1,
+            "department": "Engineering"
+          },
+          {
+            "id": 2,
+            "department": "Sales"
+          },
+          {
+            "id": 4,
+            "department": "Finance"
+          }
+        ]
+      },
+      "key": {
+        "type": "string",
+        "required": false,
+        "description": "Column used to match records",
+        "default": "id"
+      }
+    },
+    "example": {
+      "join_type": "full",
+      "left_rows": [
+        {
+          "id": 1,
+          "name": "Alice"
+        },
+        {
+          "id": 2,
+          "name": "Bob"
+        },
+        {
+          "id": 3,
+          "name": "Carol"
+        }
+      ],
+      "right_rows": [
+        {
+          "id": 1,
+          "department": "Engineering"
+        },
+        {
+          "id": 2,
+          "department": "Sales"
+        },
+        {
+          "id": 4,
+          "department": "Finance"
+        }
+      ],
+      "key": "id"
+    }
+  },
+  {
     "name": "ac_waveform",
     "domain": "electrical",
     "description": "Animated sine wave(s) with a moving marker. Use 3 phases to show a balanced three-phase supply.",
