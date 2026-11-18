@@ -37,6 +37,21 @@ Manimater turns a prompt into a narrated explainer video. This library is what m
 { "component": "synchronous_motor", "params": { "poles": 2, "frequency_hz": 50 } }
 ```
 
+<table>
+  <tr>
+    <td width="33%" align="center"><img src="assets/gifs/synchronous_motor.gif" alt="synchronous motor component" width="100%"><br><sub><code>synchronous_motor</code><br>electrical</sub></td>
+    <td width="33%" align="center"><img src="assets/gifs/cpu_pipeline.gif" alt="cpu pipeline component" width="100%"><br><sub><code>cpu_pipeline</code><br>microelectronics</sub></td>
+    <td width="33%" align="center"><img src="assets/gifs/neural_network.gif" alt="neural network component" width="100%"><br><sub><code>neural_network</code><br>machine learning</sub></td>
+  </tr>
+  <tr>
+    <td width="33%" align="center"><img src="assets/gifs/pid_response.gif" alt="pid response component" width="100%"><br><sub><code>pid_response</code><br>control systems</sub></td>
+    <td width="33%" align="center"><img src="assets/gifs/binary_search_tree.gif" alt="binary search tree component" width="100%"><br><sub><code>binary_search_tree</code><br>computer science</sub></td>
+    <td width="33%" align="center"><img src="assets/gifs/order_book_matching.gif" alt="order book matching component" width="100%"><br><sub><code>order_book_matching</code><br>finance</sub></td>
+  </tr>
+</table>
+
+<p align="center"><sub>Six of the components, rendered from their own <code>example</code> parameters with <code>python -m manimate.preview</code>.</sub></p>
+
 ## Why components
 
 - **No generated code.** An LLM (or you) only picks a component and fills in its parameters as JSON. `manimate.storyboard`
@@ -54,9 +69,13 @@ git clone https://github.com/bishnt/manimater-components && cd manimater-compone
 pip install -e ".[dev]"
 ./scripts/install_plugins.sh          # the community Manim packages some components wrap (optional)
 
-python -m manimate.preview --list     # every component
-python -m manimate.preview callout    # renders previews/callout.mp4 from the component's own example
+manimate-preview --list              # every component
+manimate-preview callout             # renders previews/callout.mp4 from the component's own example
+manimate-catalog > catalog.json      # export the component catalog
 ```
+
+The commands are installed by `pip install`. The module forms
+`python -m manimate.preview` and `python -m manimate.catalog` also work.
 
 Use it from Python:
 

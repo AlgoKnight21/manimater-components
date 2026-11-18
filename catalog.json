@@ -609,6 +609,52 @@
     }
   },
   {
+    "name": "binary_heap",
+    "domain": "computer-science",
+    "description": "Visualize a min-heap or max-heap built by insertion, then remove the root using sift-down. Shows the heap tree and matching array with comparisons highlighted.",
+    "params": {
+      "values": {
+        "type": "number[]",
+        "required": false,
+        "description": "Numbers to insert in order (up to 8); duplicates and negatives are supported",
+        "default": [
+          10,
+          20,
+          15,
+          5,
+          8
+        ]
+      },
+      "extract_count": {
+        "type": "integer",
+        "required": false,
+        "description": "Number of roots to extract after insertion; values above heap size are clamped",
+        "default": 2
+      },
+      "kind": {
+        "type": "string",
+        "required": false,
+        "description": "Heap ordering",
+        "default": "min",
+        "choices": [
+          "min",
+          "max"
+        ]
+      }
+    },
+    "example": {
+      "values": [
+        10,
+        20,
+        15,
+        5,
+        8
+      ],
+      "extract_count": 2,
+      "kind": "min"
+    }
+  },
+  {
     "name": "binary_representation",
     "domain": "computer-science",
     "description": "Shows how a number from 0 to 255 is written in binary: eight bits with place values 128 to 1, deciding each bit by subtraction, then adding the lit places back up.",
@@ -1355,6 +1401,101 @@
       "name": "manim-databases",
       "url": "https://github.com/pg-pilot/manim-databases",
       "license": "MIT"
+    }
+  },
+  {
+    "name": "sql_join",
+    "domain": "databases",
+    "description": "Visualize SQL JOINs with matching rows, unmatched records, and NULL values.",
+    "params": {
+      "join_type": {
+        "type": "string",
+        "required": false,
+        "description": "SQL join type",
+        "default": "full",
+        "choices": [
+          "inner",
+          "left",
+          "right",
+          "full"
+        ]
+      },
+      "left_rows": {
+        "type": "object[]",
+        "required": false,
+        "description": "Rows in the left table",
+        "default": [
+          {
+            "id": 1,
+            "name": "Alice"
+          },
+          {
+            "id": 2,
+            "name": "Bob"
+          },
+          {
+            "id": 3,
+            "name": "Carol"
+          }
+        ]
+      },
+      "right_rows": {
+        "type": "object[]",
+        "required": false,
+        "description": "Rows in the right table",
+        "default": [
+          {
+            "id": 1,
+            "department": "Engineering"
+          },
+          {
+            "id": 2,
+            "department": "Sales"
+          },
+          {
+            "id": 4,
+            "department": "Finance"
+          }
+        ]
+      },
+      "key": {
+        "type": "string",
+        "required": false,
+        "description": "Column used to match records",
+        "default": "id"
+      }
+    },
+    "example": {
+      "join_type": "full",
+      "left_rows": [
+        {
+          "id": 1,
+          "name": "Alice"
+        },
+        {
+          "id": 2,
+          "name": "Bob"
+        },
+        {
+          "id": 3,
+          "name": "Carol"
+        }
+      ],
+      "right_rows": [
+        {
+          "id": 1,
+          "department": "Engineering"
+        },
+        {
+          "id": 2,
+          "department": "Sales"
+        },
+        {
+          "id": 4,
+          "department": "Finance"
+        }
+      ],
+      "key": "id"
     }
   },
   {

@@ -8,6 +8,10 @@ requires-python = ">=3.10"
 authors = [{ name = "Bishrant Ghimire" }]
 dependencies = ["manim>=0.19,<1.0", "pydantic>=2.6"]
 
+[project.scripts]
+manimate-preview = "manimate.preview:main"
+manimate-catalog = "manimate.catalog:main"
+
 [project.optional-dependencies]
 dev = ["pytest>=8"]
 
